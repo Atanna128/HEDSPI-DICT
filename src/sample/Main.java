@@ -16,6 +16,11 @@ public class Main extends Application {
         primaryStage.setTitle("Dictionary");
         primaryStage.setScene(scene);
         primaryStage.show();
+        setupDict();
+    }
+
+    public void setupDict(){
+        Dict dict = new Dict();
     }
 
 
