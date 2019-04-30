@@ -19,7 +19,7 @@ public class Controller {
 
     }
 
-    public void printOutput(ActionEvent actionEvent){
+    public void printOutput(){
         outputText.setText(inputText.getText());
     }
 
