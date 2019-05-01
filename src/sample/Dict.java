@@ -11,8 +11,7 @@ import java.util.TreeMap;
 
 
 class Dict {
-
-    private String errornameformat = "Dictionary should start with # dict-name #";
+    public String errornameformat = "Dictionary should start with # dict-name #";
     public String open = "{";
     public String next = ";";
     public String end = "}";
@@ -31,17 +30,17 @@ class Dict {
         fw.close();
     }
 
-    private void read(String filename) throws FileNotFoundException {
+    public TreeMap<String,String> read(String filename) throws FileNotFoundException {
+        TreeMap<String,String> a = new TreeMap<>();
         String dictname;
-
-        // try {
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
         dictname = getdictname(scanner);
-        System.out.println("The dictionary name is" + dictname);
-        inputdata(scanner);
+//        System.out.println("The dictionary name is" + dictname);
+        a = inputdata(scanner);
         getalldata();
         scanner.close();
+        return  a;
     }
 
     private String getdictname(Scanner scanner) {
@@ -77,7 +76,8 @@ class Dict {
         }
     }
 
-    private void inputdata(Scanner scanner) {
+    private TreeMap<String,String> inputdata(Scanner scanner) {
+        TreeMap<String,String> a = new TreeMap<>();
         String get;
         String word;
         String meaning;
@@ -93,7 +93,7 @@ class Dict {
                 while (!((get = scanner.next()).equals(end))) {
                     meaning = meaning + get;
                 }
-                dict.put(word, meaning);
+                a.put(word, meaning);
 
             }
         } catch (NoSuchElementException e) {
@@ -101,6 +101,7 @@ class Dict {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return  a;
     }
 
     private static void createnewdict() throws IOException {
