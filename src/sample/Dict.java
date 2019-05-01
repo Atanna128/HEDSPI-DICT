@@ -38,12 +38,12 @@ class Dict {
         dictname = getdictname(scanner);
 //        System.out.println("The dictionary name is" + dictname);
         a = inputdata(scanner);
-        getalldata();
+        getalldata(a);
         scanner.close();
         return  a;
     }
 
-    private String getdictname(Scanner scanner) {
+    public String getdictname(Scanner scanner) {
         String check;
         String dictname = "";
         String errorstring = "";
@@ -67,16 +67,16 @@ class Dict {
         return dictname;
     }
 
-    private void getalldata() {
+    public void getalldata(TreeMap<String,String> a) {
         // System.out.println("Word : Meaning");
-        for (Map.Entry<String, String> entry : dict.entrySet()) {
+        for (Map.Entry<String, String> entry : a.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
             System.out.println(key + " : " + value);
         }
     }
 
-    private TreeMap<String,String> inputdata(Scanner scanner) {
+    public TreeMap<String,String> inputdata(Scanner scanner) {
         TreeMap<String,String> a = new TreeMap<>();
         String get;
         String word;

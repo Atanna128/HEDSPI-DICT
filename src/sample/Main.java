@@ -17,6 +17,9 @@ public class Main extends Application {
     public TreeView dictList;
 
     TreeMap<String,String> map = new TreeMap<>();
+    TreeItem<String> rootItem  = new TreeItem<>("inbox");
+
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -32,9 +35,24 @@ public class Main extends Application {
     }
 
     public void setupDict(){
+
+        rootItem.setExpanded(true);
+
+        for (int i = 0; i <5;i++){
+            TreeItem<String> item = new TreeItem<>("Message" + i);
+            rootItem.getChildren().add(item);
+        }
+        dictList = new TreeView<String>(rootItem);
+        dictList.setShowRoot(true);
+        dictList.showRootProperty();
+        dictList.
+
+
+
         try {
             Dict dict = new Dict();
             map = dict.read("C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield");
+
         }catch (FileNotFoundException e){
             System.out.println("File not found . . . ");
             e.printStackTrace();
