@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -17,7 +18,6 @@ public class Main extends Application {
     public TreeView dictList;
 
     TreeMap<String,String> map = new TreeMap<>();
-    TreeItem<String> rootItem  = new TreeItem<>("inbox");
 
 
 
@@ -36,17 +36,17 @@ public class Main extends Application {
 
     public void setupDict(){
 
-        rootItem.setExpanded(true);
 
-        for (int i = 0; i <5;i++){
-            TreeItem<String> item = new TreeItem<>("Message" + i);
-            rootItem.getChildren().add(item);
-        }
-        dictList = new TreeView<String>(rootItem);
-        dictList.setShowRoot(true);
-        dictList.showRootProperty();
-        dictList.
-
+        TreeItem<String> root = new TreeItem<>("Root Node");
+        root.setExpanded(true);
+        root.getChildren().addAll(
+                new TreeItem<>("Item 1"),
+                new TreeItem<>("Item 2"),
+                new TreeItem<>("Item 3")
+        );
+        dictList = new TreeView<>(root);
+        VBox xd = new VBox();
+        xd.getChildren().add(dictList);
 
 
         try {

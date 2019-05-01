@@ -1,10 +1,7 @@
 package sample;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
 
@@ -31,6 +28,16 @@ public class Controller {
         }else outputText.setEditable(true);
     }
 
+    public void showTreeView(ActionEvent event){
+        TreeItem<String> root = new TreeItem<>("Root Node");
+        dictList.setRoot(root);
+        root.setExpanded(true);
+        root.getChildren().addAll(
+                new TreeItem<>("Item 1"),
+                new TreeItem<>("Item 2"),
+                new TreeItem<>("Item 3")
+        );
+    }
     public void getDict(){
         try {
             TreeMap<String,String> dictionary = new TreeMap<>();
