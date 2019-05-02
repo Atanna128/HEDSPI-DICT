@@ -34,6 +34,10 @@ public class Controller implements Initializable {
         }
     }
 
+    public void searching(ActionEvent event){
+        System.out.println("Searching for the meaning of the word . . .");
+    }
+
     public TreeItem getTreeViewItem(TreeItem<String> item , String value){
         if (item != null && item.getValue().equals(value))
             return  item;
@@ -72,13 +76,13 @@ public class Controller implements Initializable {
     public void getDict(){
         try {
             TreeItem<String> root = new TreeItem<>("Root");
-            root.setValue("");
+            root.setValue("List of word");
             dictList.setRoot(root);
             dictList.setShowRoot(false);
             root.setExpanded(true);
 
 
-            TreeMap<String,String> dictionary = new TreeMap<>();
+            TreeMap<String,String> dictionary;
             Dict dict = new Dict();
             dictionary = dict.read("C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield");
 
@@ -87,14 +91,16 @@ public class Controller implements Initializable {
                 String value = entry.getValue();
 
                 TreeItem<String> next = new TreeItem<>(key);
-//                next.setValue(value);
+                next.setValue(value);
                 root.getChildren().add(next);
-//
-                TreeItem<String> demo = new TreeItem<>();
-                String test;
-//                System.out.println("test = " + test);
 
             }
+            TreeItem<String> demo = new TreeItem<>();
+            String test;
+            test = root.getChildren().get(2).getValue();
+            System.out.println("test = " + test);
+
+
         }catch (FileNotFoundException e){
             System.out.println("File not found . . . ");
             e.printStackTrace();
