@@ -57,7 +57,7 @@
       </VBox>
    </top>
    <left>
-      <TreeView fx:id="dictList" editable="true" onMouseEntered="#showTreeView" prefHeight="700.0" prefWidth="354.0" BorderPane.alignment="CENTER" />
+      <TreeView fx:id="dictList" editable="true" prefHeight="700.0" prefWidth="354.0" BorderPane.alignment="CENTER" />
    </left>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

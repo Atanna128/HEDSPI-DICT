@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.lang.String;
 
 
 class Dict {
@@ -38,7 +39,7 @@ class Dict {
         dictname = getdictname(scanner);
 //        System.out.println("The dictionary name is" + dictname);
         a = inputdata(scanner);
-        getalldata(a);
+//        getalldata(a);
         scanner.close();
         return  a;
     }
@@ -77,6 +78,7 @@ class Dict {
     }
 
     public TreeMap<String,String> inputdata(Scanner scanner) {
+
         TreeMap<String,String> a = new TreeMap<>();
         String get;
         String word;
@@ -88,10 +90,10 @@ class Dict {
                 while (!(scanner.next().equals(open))) {
                 }
                 while (!((get = scanner.next()).equals(next))) {
-                    word = word + get;
+                    word = word + " " + get;
                 }
                 while (!((get = scanner.next()).equals(end))) {
-                    meaning = meaning + get;
+                    meaning = meaning + " " + get;
                 }
                 a.put(word, meaning);
 
