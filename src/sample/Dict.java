@@ -37,7 +37,6 @@ class Dict {
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
         dictname = getdictname(scanner);
-//        System.out.println("The dictionary name is" + dictname);
         a = inputdata(scanner);
 //        getalldata(a);
         scanner.close();

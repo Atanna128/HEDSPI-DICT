@@ -22,8 +22,10 @@ public class Controller implements Initializable {
     public TextArea outputText;
     public ImageView editbutton;
     public TreeView<String> dictList = new TreeView<>();
+
     //using screencontroller to create multi screen . . .
 
+    //done
     public void edit(MouseEvent mouseEvent){
         if(outputText.isEditable()){
             outputText.setEditable(false);
@@ -34,11 +36,18 @@ public class Controller implements Initializable {
         }
     }
 
+    // đợi hàm getTreeViewItem làm xong đã rồi fix sau :3
     public void searching(ActionEvent event){
         System.out.println("Searching for the meaning of the word . . .");
+        String searchword = inputText.getText();
+        String meaning = "";
+        meaning = getTreeViewItem(dictList.getRoot(),searchword).getValue();
+        System.out.println(meaning);
+        outputText.setText(meaning);
     }
 
-    public TreeItem getTreeViewItem(TreeItem<String> item , String value){
+    // làm lại hàm | chỉ cần seach 1 lần getchildren là đc :(( ko cần đệ quy nữa  . . .
+    public TreeItem<String> getTreeViewItem(TreeItem<String> item , String value) throws NullPointerException{
         if (item != null && item.getValue().equals(value))
             return  item;
 
@@ -48,18 +57,13 @@ public class Controller implements Initializable {
                 return s;
 
         }
-        return null;
+        TreeItem<String> abc = new TreeItem<>("cant find");
+//        return null;
+        return abc;
     }
 
-//
-//    public void getmeaning(ActionEvent event){
-//        TreeItem<String> abc = new TreeItem<>();
-//        TreeItem<String> selected = new TreeItem<>();
-//        String search = inputText.getText();
-//        selected = dictList.getModelItem
-//        abc = getTreeViewItem()
-//    }
 
+    // test function
     public void showTreeView(ActionEvent event){
         TreeItem<String> root = new TreeItem<>("Root Node");
 
@@ -73,6 +77,7 @@ public class Controller implements Initializable {
         );
     }
 
+//    initialize
     public void getDict(){
         try {
             TreeItem<String> root = new TreeItem<>("Root");
@@ -80,7 +85,6 @@ public class Controller implements Initializable {
             dictList.setRoot(root);
             dictList.setShowRoot(false);
             root.setExpanded(true);
-
 
             TreeMap<String,String> dictionary;
             Dict dict = new Dict();
@@ -93,20 +97,14 @@ public class Controller implements Initializable {
                 TreeItem<String> next = new TreeItem<>(key);
                 TreeItem<String> next2 = new TreeItem<>(value);
                 next.setExpanded(false);
-
-
                 root.getChildren().add(next);
-
                 next.getChildren().add(next2);
-
-
-
             }
             TreeItem<String> demo = new TreeItem<>();
             String test;
             test = root.getChildren().get(2).getValue();
             demo = root.getChildren().get(2);
-            System.out.println("test = " + test);
+
 
 
         }catch (FileNotFoundException e){
@@ -115,6 +113,7 @@ public class Controller implements Initializable {
         }
     }
 
+    // test function
     public void printOutput(){
         outputText.setText(inputText.getText());
     }
