@@ -91,13 +91,21 @@ public class Controller implements Initializable {
                 String value = entry.getValue();
 
                 TreeItem<String> next = new TreeItem<>(key);
-                next.setValue(value);
+                TreeItem<String> next2 = new TreeItem<>(value);
+                next.setExpanded(false);
+
+
                 root.getChildren().add(next);
+
+                next.getChildren().add(next2);
+
+
 
             }
             TreeItem<String> demo = new TreeItem<>();
             String test;
             test = root.getChildren().get(2).getValue();
+            demo = root.getChildren().get(2);
             System.out.println("test = " + test);
 
 
