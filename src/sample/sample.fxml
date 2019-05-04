@@ -19,7 +19,7 @@
                   <items>
                         <MenuItem mnemonicParsing="false" text="New" />
                         <MenuItem mnemonicParsing="false" text="Open" />
-                    <MenuItem mnemonicParsing="false" text="Dictionary list" />
+                        <Menu fx:id="openrecent" mnemonicParsing="false" text="Open recent" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">

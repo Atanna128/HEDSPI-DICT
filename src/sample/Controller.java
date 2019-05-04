@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Map;
@@ -22,6 +24,7 @@ public class Controller implements Initializable {
     public TextArea outputText;
     public ImageView editbutton;
     public TreeView<String> dictList = new TreeView<>();
+    public Menu openrecent;
 
     //using screencontroller to create multi screen . . .
 
@@ -118,8 +121,28 @@ public class Controller implements Initializable {
         outputText.setText(inputText.getText());
     }
 
+    public void listFolder(File dir){
+        File[] subDirs = dir.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.isDirectory();
+            }
+        });
+        listFile(dir);
+    }
+
+    private void listFile(File dir) {
+        File[] files = dir.listFiles();
+        for (File file: files) {
+            System.out.println(file.getName());
+        }
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getDict();
+        listFolder(new File("C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary"));
+//        openrecent.
     }
 }
