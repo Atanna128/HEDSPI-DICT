@@ -19,7 +19,10 @@
                   <items>
                         <MenuItem mnemonicParsing="false" text="New" />
                         <MenuItem mnemonicParsing="false" text="Open" />
-                        <Menu fx:id="openrecent" mnemonicParsing="false" text="Open recent" />
+                        <Menu fx:id="openrecent" mnemonicParsing="false" onMenuValidation="#openFile" text="Open recent">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="abc" />
+                           </items></Menu>
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -56,9 +59,6 @@
          </children>
       </VBox>
    </top>
-   <left>
-      <TreeView fx:id="dictList" editable="true" prefHeight="700.0" prefWidth="354.0" BorderPane.alignment="CENTER" />
-   </left>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
@@ -80,4 +80,7 @@
          </children>
       </AnchorPane>
    </center>
+   <left>
+      <ListView fx:id="dictList" prefHeight="705.0" prefWidth="348.0" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>

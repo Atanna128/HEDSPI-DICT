@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -8,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Map;
@@ -23,8 +23,10 @@ public class Controller implements Initializable {
     public Button clickbutton;
     public TextArea outputText;
     public ImageView editbutton;
-    public TreeView<String> dictList = new TreeView<>();
+
     public Menu openrecent;
+    public ListView dictList;
+
 
     //using screencontroller to create multi screen . . .
 
@@ -49,7 +51,7 @@ public class Controller implements Initializable {
         outputText.setText(meaning);
     }
 
-    // làm lại hàm | chỉ cần seach 1 lần getchildren là đc :(( ko cần đệ quy nữa  . . .
+    // get ready to be deleted  :))
     public TreeItem<String> getTreeViewItem(TreeItem<String> item , String value) throws NullPointerException{
         if (item != null && item.getValue().equals(value))
             return  item;
@@ -66,23 +68,12 @@ public class Controller implements Initializable {
     }
 
 
-    // test function
-    public void showTreeView(ActionEvent event){
-        TreeItem<String> root = new TreeItem<>("Root Node");
-
-        dictList.setRoot(root);
-        dictList.setShowRoot(false);
-        root.setExpanded(true);
-        root.getChildren().addAll(
-                new TreeItem<>("Item 1"),
-                new TreeItem<>("Item 2"),
-                new TreeItem<>("Item 3")
-        );
-    }
 
 //    initialize
     public void getDict(){
         try {
+
+
             TreeItem<String> root = new TreeItem<>("Root");
             root.setValue("List of word");
             dictList.setRoot(root);
@@ -116,25 +107,22 @@ public class Controller implements Initializable {
         }
     }
 
-    // test function
-    public void printOutput(){
-        outputText.setText(inputText.getText());
-    }
 
-    public void listFolder(File dir){
-        File[] subDirs = dir.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return pathname.isDirectory();
-            }
-        });
-        listFile(dir);
-    }
+    public void openFile(Event event){
 
+        String filename = "da";
+        System.out.println("select file : " + filename );
+
+    }
+    //list file
     private void listFile(File dir) {
+        int i = 0;
+        String getname;
         File[] files = dir.listFiles();
         for (File file: files) {
-            System.out.println(file.getName());
+            getname = file.getName();
+            openrecent.getItems().add(new MenuItem(getname));
+            i++;
         }
     }
 
@@ -142,7 +130,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getDict();
-        listFolder(new File("C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary"));
-//        openrecent.
+        listFile(new File("C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary"));
+
     }
 }

@@ -12,24 +12,15 @@ import java.lang.String;
 
 
 class Dict {
-    public String errornameformat = "Dictionary should start with # dict-name #";
+
     public String open = "{";
     public String next = ";";
     public String end = "}";
     String dictname;
-
-    TreeMap<String, String> dict = new TreeMap<>();
+    TreeMap<Word> dictionary = new TreeMap<>();
+//    TreeMap<String, String> dict = new TreeMap<>();
     // # name # {word ; meaning}
 
-    void create(String name) throws IOException { // create a text file for dictionary
-        String filename = name + ".txt";
-        File file = new File(filename);
-        file.createNewFile();
-        FileWriter fw = new FileWriter(file);
-        fw.write("#" + name + "#");
-
-        fw.close();
-    }
 
     public TreeMap<String,String> read(String filename) throws FileNotFoundException {
         TreeMap<String,String> a = new TreeMap<>();
@@ -62,7 +53,7 @@ class Dict {
             }
         }
         if (errorcode > 0)
-            System.out.println(errornameformat + "\nMisformatted string : " + errorstring);
+            System.out.println("Dictionary should start with # dict-name #" + "\nMisformatted string : " + errorstring);
 
         return dictname;
     }
@@ -117,5 +108,15 @@ class Dict {
         scanner.close();
     }
 
+
+    void create(String name) throws IOException { // create a text file for dictionary
+        String filename = name + ".txt";
+        File file = new File(filename);
+        file.createNewFile();
+        FileWriter fw = new FileWriter(file);
+        fw.write("#" + name + "#");
+
+        fw.close();
+    }
 }
 
