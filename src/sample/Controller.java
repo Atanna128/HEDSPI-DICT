@@ -5,18 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.net.URL;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.TreeMap;
-
+import java.util.*;
 
 
 public class Controller implements Initializable {
@@ -30,6 +26,7 @@ public class Controller implements Initializable {
     public Button add;
 
     public  TreeMap<String,String> dictionary;
+    public String dictname;
 
 
     //using screencontroller to create multi screen . . .
@@ -73,7 +70,27 @@ public class Controller implements Initializable {
         word = " " + inputText.getText();
         meaning = outputText.getText();
         dictionary.replace(word,meaning);
-        System.out.println("word " + word + " has changed meaning to " + meaning);
+//        System.out.println("word " + word + " has changed meaning to " + meaning);
+        updateToFile();
+    }
+
+    private void updateToFile() {
+        try {
+            String filename = "C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield";
+            FileWriter writer = new FileWriter(filename);
+            BufferedWriter buffer = new BufferedWriter(writer);
+            buffer.write(" # " + dictname + " # ");
+            for (Map.Entry<String,String> entry: dictionary.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+                buffer.write(" { " + key + " ; " + value + " } ");
+                buffer.newLine();
+            }
+            buffer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     //done // find the meaning and show it on right textarea
@@ -100,9 +117,11 @@ public class Controller implements Initializable {
 //    initialize
     public void getDict(){
         try {
+            String filename = "C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield";
             Dict dict = new Dict();
-            dictionary = dict.read("C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield");
-
+            Scanner scanner = new Scanner(new File(filename));
+            dictionary = dict.read(filename);
+            dictname = dict.getdictname(scanner);
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
                 String key   = entry.getKey();
                 String value = entry.getValue();
