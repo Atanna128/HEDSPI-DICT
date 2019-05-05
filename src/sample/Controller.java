@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -26,23 +27,56 @@ public class Controller implements Initializable {
     public ImageView editbutton;
     public Menu openrecent;
     public ListView dictList;
+    public Button add;
 
     public  TreeMap<String,String> dictionary;
 
 
     //using screencontroller to create multi screen . . .
 
+    // working on it
+    public void addWord(ActionEvent event){
+        TextInputDialog demo = new TextInputDialog();
+        demo.setHeaderText("New word");
+        demo.setContentText("Word");
+
+    }
+
+    // demo addword
+    // demo sucessfully xD
+    public void demo(ActionEvent event){
+        dictionary.put(" demohere", "lua dao day dung tin");
+        dictList.getItems().clear();
+        for (Map.Entry<String,String> entry: dictionary.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            dictList.getItems().add(key);
+        }
+    }
+
     //done
     // set editable for the word's meaning
     public void edit(MouseEvent mouseEvent){
         if(outputText.isEditable()){
             outputText.setEditable(false);
+            editMeaning();
         }else {
             outputText.setEditable(true);
         }
     }
 
+    //  cần mở file ra 1 lần nữa để replace ??
+    //  still working on it
+    public void editMeaning(){
+        String word;
+        String meaning;
+        word = " " + inputText.getText();
+        meaning = outputText.getText();
+        dictionary.replace(word,meaning);
+        System.out.println("word " + word + " has changed meaning to " + meaning);
+    }
 
+    //done // find the meaning and show it on right textarea
     public void searching(ActionEvent event){
         String input = inputText.getText();
         String meaning;
@@ -52,6 +86,7 @@ public class Controller implements Initializable {
         outputText.setEditable(false);
     }
 
+    //done
     public String getMeaning(String word){
         String notfound = "Word not found!";
         word = " " + word;
@@ -72,6 +107,7 @@ public class Controller implements Initializable {
                 String key   = entry.getKey();
                 String value = entry.getValue();
                 dictList.getItems().add(key);
+//                content.add(key);
             }
 
         }catch (FileNotFoundException e){
@@ -81,11 +117,11 @@ public class Controller implements Initializable {
     }
 
 
+    // still working on it, but have no idea :(
+    // choicebox / choicedialog ?
     public void openFile(Event event){
-
         String filename = "da";
         System.out.println("select file : " + filename );
-
     }
     //list file
     private void listFile(File dir) {

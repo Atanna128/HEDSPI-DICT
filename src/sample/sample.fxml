@@ -39,10 +39,10 @@
             </MenuBar>
             <HBox alignment="CENTER" prefHeight="46.0" prefWidth="1260.0">
                <children>
-                  <TextField fx:id="inputText" maxWidth="-Infinity" onAction="#searching" prefColumnCount="0" prefHeight="39.0" prefWidth="348.0" promptText="search" />
+                  <TextField fx:id="inputText" maxWidth="-Infinity" onAction="#searching" prefColumnCount="0" prefHeight="39.0" prefWidth="361.0" promptText="search" />
                   <Region prefHeight="46.0" prefWidth="635.0" HBox.hgrow="ALWAYS" />
-                  <Button id="demo" fx:id="clickbutton" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="81.0" text="click" textOverrun="WORD_ELLIPSIS" />
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="75.0" text="Add" textAlignment="CENTER" />
+                  <Button id="demo" fx:id="clickbutton" alignment="CENTER" mnemonicParsing="false" onAction="#demo" prefHeight="39.0" prefWidth="81.0" text="click" textOverrun="WORD_ELLIPSIS" />
+                  <Button fx:id="add" alignment="CENTER" mnemonicParsing="false" onAction="#addWord" prefHeight="39.0" prefWidth="75.0" text="Add" textAlignment="CENTER" />
                   <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" text="New Dictionary" textOverrun="WORD_ELLIPSIS" />
                </children>
                <opaqueInsets>
