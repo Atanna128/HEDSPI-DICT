@@ -24,6 +24,7 @@ public class Controller implements Initializable {
     public Menu openrecent;
     public ListView dictList;
     public Button add;
+    public ImageView deletebutton;
 
     public  TreeMap<String,String> dictionary;
     public String dictname;
@@ -45,12 +46,7 @@ public class Controller implements Initializable {
         dictionary.put(" demohere", "lua dao day dung tin");
         // đúng ra là phải dùng ObservableList để setItem cho ListView, do hàm getItem.add chỉ là copy dữ liệu
         // nếu dùng ObservableList thì chỉ cần addItem là ListView sẽ tự update khi OL thay đổi
-        dictList.getItems().clear();
-        for (Map.Entry<String,String> entry: dictionary.entrySet()) {
-            String key = entry.getKey();
-            String value = entry.getValue();
-            dictList.getItems().add(key);
-        }
+        updateListView();
     }
 
     //done
@@ -65,8 +61,22 @@ public class Controller implements Initializable {
     }
 
     //working on it
-    public void delete(ActionEvent event){
+    public void delete(MouseEvent event){
+        String word;
+        word = " " + inputText.getText();
+        dictionary.remove(word);
+        updateListView();
+        updateToFile();
 
+    }
+
+    private void updateListView() {
+        dictList.getItems().clear();
+        for (Map.Entry<String,String> entry: dictionary.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            dictList.getItems().add(key);
+        }
     }
 
     //done
