@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.TreeMap;
 
 
@@ -23,83 +24,55 @@ public class Controller implements Initializable {
     public Button clickbutton;
     public TextArea outputText;
     public ImageView editbutton;
-
     public Menu openrecent;
     public ListView dictList;
+
+    public  TreeMap<String,String> dictionary;
 
 
     //using screencontroller to create multi screen . . .
 
     //done
+    // set editable for the word's meaning
     public void edit(MouseEvent mouseEvent){
         if(outputText.isEditable()){
             outputText.setEditable(false);
-            System.out.println("Defination now can not edit anymore!");
         }else {
             outputText.setEditable(true);
-            System.out.println("Defination now can edit again!");
         }
     }
 
-    // đợi hàm getTreeViewItem làm xong đã rồi fix sau :3
+
     public void searching(ActionEvent event){
-        System.out.println("Searching for the meaning of the word . . .");
-        String searchword = inputText.getText();
-        String meaning = "";
-        meaning = getTreeViewItem(dictList.getRoot(),searchword).getValue();
-        System.out.println(meaning);
+        String input = inputText.getText();
+        String meaning;
+        meaning = getMeaning(input);
+        outputText.setEditable(true);
         outputText.setText(meaning);
+        outputText.setEditable(false);
     }
 
-    // get ready to be deleted  :))
-    public TreeItem<String> getTreeViewItem(TreeItem<String> item , String value) throws NullPointerException{
-        if (item != null && item.getValue().equals(value))
-            return  item;
-
-        for (TreeItem<String> child : item.getChildren()){
-            TreeItem<String> s=getTreeViewItem(child, value);
-            if(s!=null)
-                return s;
-
+    public String getMeaning(String word){
+        String notfound = "Word not found!";
+        word = " " + word;
+        Set<String> keys = dictionary.keySet();
+        for (String key : keys ){
+            if (key.equals(word)) return dictionary.get(key);
         }
-        TreeItem<String> abc = new TreeItem<>("cant find");
-//        return null;
-        return abc;
+        return notfound;
     }
-
-
 
 //    initialize
     public void getDict(){
         try {
-
-
-            TreeItem<String> root = new TreeItem<>("Root");
-            root.setValue("List of word");
-            dictList.setRoot(root);
-            dictList.setShowRoot(false);
-            root.setExpanded(true);
-
-            TreeMap<String,String> dictionary;
             Dict dict = new Dict();
             dictionary = dict.read("C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield");
 
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
                 String key   = entry.getKey();
                 String value = entry.getValue();
-
-                TreeItem<String> next = new TreeItem<>(key);
-                TreeItem<String> next2 = new TreeItem<>(value);
-                next.setExpanded(false);
-                root.getChildren().add(next);
-                next.getChildren().add(next2);
+                dictList.getItems().add(key);
             }
-            TreeItem<String> demo = new TreeItem<>();
-            String test;
-            test = root.getChildren().get(2).getValue();
-            demo = root.getChildren().get(2);
-
-
 
         }catch (FileNotFoundException e){
             System.out.println("File not found . . . ");

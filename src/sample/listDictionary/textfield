@@ -1,3 +1,6 @@
-# name 1 2 3 4 5 # { a ; chu dau tien }
-{ b ; chu thu 2 }
-{ c ; chu thu 3 }
+# name 1 2 3 4 5 # { a letter ; chu dau tien }
+{ b letter ; chu thu 2 }
+{ c letter ; chu thu 3 }
+{ desk ; you can sit on it }
+{ book ; a special thing that make you . . . }
+{ laugh ; hahahihihehe }

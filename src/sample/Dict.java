@@ -17,13 +17,13 @@ class Dict {
     public String next = ";";
     public String end = "}";
     String dictname;
-    TreeMap<Word> dictionary = new TreeMap<>();
+    TreeMap<String,String> dictionary = new TreeMap<>();
 //    TreeMap<String, String> dict = new TreeMap<>();
     // # name # {word ; meaning}
 
 
     public TreeMap<String,String> read(String filename) throws FileNotFoundException {
-        TreeMap<String,String> a = new TreeMap<>();
+        TreeMap<String,String> a;
         String dictname;
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
@@ -85,8 +85,7 @@ class Dict {
                 while (!((get = scanner.next()).equals(end))) {
                     meaning = meaning + " " + get;
                 }
-                a.put(word, meaning);
-
+                a.put(word,meaning);
             }
         } catch (NoSuchElementException e) {
             System.out.println("Unnecessary text found at the end of file");
