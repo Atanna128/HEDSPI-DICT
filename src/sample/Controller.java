@@ -43,6 +43,8 @@ public class Controller implements Initializable {
     // demo sucessfully xD
     public void demo(ActionEvent event){
         dictionary.put(" demohere", "lua dao day dung tin");
+        // đúng ra là phải dùng ObservableList để setItem cho ListView, do hàm getItem.add chỉ là copy dữ liệu
+        // nếu dùng ObservableList thì chỉ cần addItem là ListView sẽ tự update khi OL thay đổi
         dictList.getItems().clear();
         for (Map.Entry<String,String> entry: dictionary.entrySet()) {
             String key = entry.getKey();
@@ -62,28 +64,32 @@ public class Controller implements Initializable {
         }
     }
 
-    //  cần mở file ra 1 lần nữa để replace ??
-    //  still working on it
+    //working on it
+    public void delete(ActionEvent event){
+
+    }
+
+    //done
     public void editMeaning(){
         String word;
         String meaning;
         word = " " + inputText.getText();
         meaning = outputText.getText();
         dictionary.replace(word,meaning);
-//        System.out.println("word " + word + " has changed meaning to " + meaning);
         updateToFile();
     }
 
+    //done
     private void updateToFile() {
         try {
             String filename = "C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield";
             FileWriter writer = new FileWriter(filename);
             BufferedWriter buffer = new BufferedWriter(writer);
-            buffer.write(" # " + dictname + " # ");
+            buffer.write(" # " + dictname + " # "); // follow the format
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
-                buffer.write(" { " + key + " ; " + value + " } ");
+                buffer.write(" { " + key + " ; " + value + " } "); // follow the format
                 buffer.newLine();
             }
             buffer.close();
@@ -114,7 +120,7 @@ public class Controller implements Initializable {
         return notfound;
     }
 
-//    initialize
+    //initialize
     public void getDict(){
         try {
             String filename = "C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield";
@@ -142,7 +148,9 @@ public class Controller implements Initializable {
         String filename = "da";
         System.out.println("select file : " + filename );
     }
-    //list file
+
+    //done
+    //list all file in folder listDictionary
     private void listFile(File dir) {
         int i = 0;
         String getname;
