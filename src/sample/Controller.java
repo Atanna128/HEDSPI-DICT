@@ -179,11 +179,7 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getDict();
         listFile(new File("C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary"));
-        String link = "src\\sample\\listDictionary";
-        File file = new File(link);
-        String  ab = file.getAbsolutePath();
-        System.out.println(ab);
-//        listFile(new File("ab"));
+
 
     }
 }
