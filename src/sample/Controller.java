@@ -174,12 +174,26 @@ public class Controller implements Initializable {
         }
     }
 
+    private String makechange(String getfile) {
+        String out = "";
+        for (int i = 0 ; i < getfile.length() ; i++){
+            if (getfile.charAt(i) ==  '\\'){
+                out = out + "/";
+            }else out = out + getfile.charAt(i);
+        }
+        return  out;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getDict();
-        listFile(new File("C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary"));
+        File file = new File("src/sample/listDictionary/");
+        String getfile = file.getAbsolutePath();
+        getfile = makechange(getfile);
+        listFile(new File(getfile));
 
 
     }
+
+
 }
