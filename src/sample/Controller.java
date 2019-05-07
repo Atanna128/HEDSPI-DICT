@@ -133,6 +133,8 @@ public class Controller implements Initializable {
     //initialize
     public void getDict(){
         try {
+            File file = new File("sample/listDictionary/textfield");
+
             String filename = "C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield";
             Dict dict = new Dict();
             Scanner scanner = new Scanner(new File(filename));
@@ -177,6 +179,11 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getDict();
         listFile(new File("C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary"));
+        String link = "src\\sample\\listDictionary";
+        File file = new File(link);
+        String  ab = file.getAbsolutePath();
+        System.out.println(ab);
+//        listFile(new File("ab"));
 
     }
 }
