@@ -22,11 +22,11 @@ class Dict {
     // # name # {word ; meaning}
 
 
-    public TreeMap<String,String> read(String filename) throws FileNotFoundException {
+    public TreeMap<String,String> read(File filename) throws FileNotFoundException {
         TreeMap<String,String> a;
         String dictname;
-        File file = new File(filename);
-        Scanner scanner = new Scanner(file);
+//        File file = new File(filename);
+        Scanner scanner = new Scanner(filename);
         dictname = getdictname(scanner);
         a = inputdata(scanner);
 //        getalldata(a);

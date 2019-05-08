@@ -1,11 +1,9 @@
 package sample;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
@@ -133,12 +131,9 @@ public class Controller implements Initializable {
     //initialize
     public void getDict(){
         try {
-            File file = new File("sample/listDictionary/textfield");
-
-            String filename = "C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield";
             Dict dict = new Dict();
-            Scanner scanner = new Scanner(new File(filename));
-            dictionary = dict.read(filename);
+            Scanner scanner = new Scanner(new File(getfinalpath("src/sample/listDictionary/textfield")));
+            dictionary = dict.read(new File(getfinalpath("src/sample/listDictionary/textfield")));
             dictname = dict.getdictname(scanner);
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
                 String key   = entry.getKey();
@@ -174,7 +169,10 @@ public class Controller implements Initializable {
         }
     }
 
-    private String makechange(String getfile) {
+    private String getfinalpath(String getfile) {
+        File file = new File(getfile);
+        String pathname = file.getAbsolutePath();
+
         String out = "";
         for (int i = 0 ; i < getfile.length() ; i++){
             if (getfile.charAt(i) ==  '\\'){
@@ -187,10 +185,8 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getDict();
-        File file = new File("src/sample/listDictionary/");
-        String getfile = file.getAbsolutePath();
-        getfile = makechange(getfile);
-        listFile(new File(getfile));
+        listFile(new File(getfinalpath("src/sample/listDictionary/")));
+
 
 
     }
