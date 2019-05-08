@@ -90,8 +90,7 @@ public class Controller implements Initializable {
     //done
     private void updateToFile() {
         try {
-            String filename = "C:\\Users\\buing\\IdeaProjects\\finalform\\src\\sample\\listDictionary\\textfield";
-            FileWriter writer = new FileWriter(filename);
+            FileWriter writer = new FileWriter(getfinalpath("src/sample/listDictionary/textfield"));
             BufferedWriter buffer = new BufferedWriter(writer);
             buffer.write(" # " + dictname + " # "); // follow the format
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
