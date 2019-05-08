@@ -63,6 +63,8 @@ public class Controller implements Initializable {
         String word;
         word = " " + inputText.getText();
         dictionary.remove(word);
+        outputText.clear();
+        inputText.clear();
         updateListView();
         updateToFile();
 
