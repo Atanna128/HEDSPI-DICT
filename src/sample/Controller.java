@@ -42,6 +42,8 @@ public class Controller implements Initializable {
         window.setWidth(960);
         window.setHeight(600);
         window.show();
+
+
     }
 
 
@@ -51,15 +53,6 @@ public class Controller implements Initializable {
         updateListView();
         updateToFile();
 
-    }
-
-    // demo addword
-    // demo sucessfully xD
-    public void demo(ActionEvent event){
-        dictionary.put(" demohere", "lua dao day dung tin");
-        // đúng ra là phải dùng ObservableList để setItem cho ListView, do hàm getItem.add chỉ là copy dữ liệu
-        // nếu dùng ObservableList thì chỉ cần addItem là ListView sẽ tự update khi OL thay đổi
-        updateListView();
     }
 
     //done
@@ -125,7 +118,7 @@ public class Controller implements Initializable {
     }
 
     //done // find the meaning and show it on right textarea
-    public void searching(ActionEvent event){
+    public void searching(Event event){
         String input = inputText.getText();
         String meaning;
         meaning = getMeaning(input);

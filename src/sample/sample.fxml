@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?language JavaScript?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane maxHeight="600.0" maxWidth="960.0" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -39,9 +40,8 @@
             </MenuBar>
             <HBox alignment="CENTER" prefHeight="46.0" prefWidth="1260.0">
                <children>
-                  <TextField fx:id="inputText" maxWidth="-Infinity" onAction="#searching" prefColumnCount="0" prefHeight="39.0" prefWidth="297.0" promptText="search" />
+                  <TextField fx:id="inputText" maxWidth="-Infinity" onKeyTyped="#searching" prefColumnCount="0" prefHeight="39.0" prefWidth="297.0" promptText="search" />
                   <Region prefHeight="46.0" prefWidth="279.0" HBox.hgrow="ALWAYS" />
-                  <Button id="demo" fx:id="clickbutton" alignment="CENTER" mnemonicParsing="false" onAction="#demo" prefHeight="39.0" prefWidth="89.0" text="add-test" textOverrun="WORD_ELLIPSIS" />
                   <Button fx:id="add" alignment="CENTER" mnemonicParsing="false" onAction="#addWordScene" prefHeight="39.0" prefWidth="75.0" text="Add" textAlignment="CENTER" />
                   <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" text="New Dictionary" textOverrun="WORD_ELLIPSIS" />
                </children>
@@ -64,26 +64,21 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-             <ImageView fx:id="editbutton" fitHeight="32.0" fitWidth="30.0" layoutX="882.0" layoutY="27.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="24.0">
+            <TextArea fx:id="outputText" editable="false" layoutX="1.0" prefHeight="705.0" prefWidth="924.0" promptText="defination stay here" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Text layoutX="577.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dictionary" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+            <ImageView fx:id="editbutton1" fitHeight="32.0" fitWidth="30.0" layoutX="595.0" layoutY="21.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
                <image>
                   <Image url="@image/edit.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-               <effect>
-                  <Bloom />
-               </effect>
             </ImageView>
-            <ImageView fx:id="deletebutton" fitHeight="32.0" fitWidth="30.0" layoutX="787.0" layoutY="27.0" onMouseClicked="#delete" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="94.0">
+            <ImageView fx:id="deletebutton1" fitHeight="32.0" fitWidth="30.0" layoutX="361.0" layoutY="20.0" onMouseClicked="#delete" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="20.0">
                <image>
                   <Image url="@image/delete-button.jpg" />
                </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </ImageView>
-            <TextArea fx:id="outputText" editable="false" layoutX="1.0" prefHeight="705.0" prefWidth="924.0" promptText="defination stay here" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </center>

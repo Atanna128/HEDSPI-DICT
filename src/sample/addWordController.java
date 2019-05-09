@@ -28,7 +28,7 @@ public class addWordController implements Initializable {
 
     public void AddtoMainScene(ActionEvent event) throws IOException {
         String wordadd = wordAdd.getText();
-        String meaningadd = wordAdd.getText();
+        String meaningadd = meaningAdd.getText();
         dictionary.put(wordadd,meaningadd);
         updateToFile();
 
