@@ -120,6 +120,7 @@ public class Controller implements Initializable {
         autocomplete(input);
     }
 
+    //done
     private void autocomplete(String word) {
         String recentword = " " + word + "(.*)";
         dictList.getItems().clear();
