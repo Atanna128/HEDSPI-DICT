@@ -1,6 +1,6 @@
-# 
+# Dictionary 
 > Easy to look for your book!
-# Dictionary
+
 ___
 ## Table of contents
 * [General info](#general-info)
