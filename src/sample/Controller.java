@@ -131,7 +131,6 @@ public class Controller implements Initializable {
                 dictList.getItems().add(key);
             }
         }
-
     }
 
     //done
