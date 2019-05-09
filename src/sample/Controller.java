@@ -3,10 +3,16 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
@@ -28,13 +34,22 @@ public class Controller implements Initializable {
     public String dictname;
 
 
-    //using screencontroller to create multi screen . . .
+    public void addWordScene(ActionEvent event) throws IOException {
+        Parent addParent = FXMLLoader.load(getClass().getResource("addWord.fxml"));
+        Scene addScene =new Scene(addParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(addScene);
+        window.setWidth(960);
+        window.setHeight(600);
+        window.show();
+    }
+
 
     // working on it
-    public void addWord(ActionEvent event){
-        TextInputDialog demo = new TextInputDialog();
-        demo.setHeaderText("New word");
-        demo.setContentText("Word");
+    public void addWord(String word, String meaning){
+        dictionary.put(word,meaning);
+        updateListView();
+        updateToFile();
 
     }
 
@@ -58,7 +73,7 @@ public class Controller implements Initializable {
         }
     }
 
-    //working on it
+    //done
     public void delete(MouseEvent event){
         String word;
         word = " " + inputText.getText();
@@ -70,6 +85,7 @@ public class Controller implements Initializable {
 
     }
 
+    //done
     private void updateListView() {
         dictList.getItems().clear();
         for (Map.Entry<String,String> entry: dictionary.entrySet()) {
@@ -159,7 +175,7 @@ public class Controller implements Initializable {
 
     //done
     //list all file in folder listDictionary
-    private void listFile(File dir) {
+    public void listFile(File dir) {
         int i = 0;
         String getname;
         File[] files = dir.listFiles();
@@ -170,7 +186,7 @@ public class Controller implements Initializable {
         }
     }
 
-    private String getfinalpath(String getfile) {
+    public String getfinalpath(String getfile) {
         File file = new File(getfile);
         String pathname = file.getAbsolutePath();
 
@@ -188,9 +204,6 @@ public class Controller implements Initializable {
         getDict();
         listFile(new File(getfinalpath("src/sample/listDictionary/")));
 
-
-
     }
-
 
 }

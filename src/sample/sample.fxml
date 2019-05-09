@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -39,10 +39,10 @@
             </MenuBar>
             <HBox alignment="CENTER" prefHeight="46.0" prefWidth="1260.0">
                <children>
-                  <TextField fx:id="inputText" maxWidth="-Infinity" onAction="#searching" prefColumnCount="0" prefHeight="39.0" prefWidth="361.0" promptText="search" />
-                  <Region prefHeight="46.0" prefWidth="635.0" HBox.hgrow="ALWAYS" />
-                  <Button id="demo" fx:id="clickbutton" alignment="CENTER" mnemonicParsing="false" onAction="#demo" prefHeight="39.0" prefWidth="81.0" text="click" textOverrun="WORD_ELLIPSIS" />
-                  <Button fx:id="add" alignment="CENTER" mnemonicParsing="false" onAction="#addWord" prefHeight="39.0" prefWidth="75.0" text="Add" textAlignment="CENTER" />
+                  <TextField fx:id="inputText" maxWidth="-Infinity" onAction="#searching" prefColumnCount="0" prefHeight="39.0" prefWidth="297.0" promptText="search" />
+                  <Region prefHeight="46.0" prefWidth="279.0" HBox.hgrow="ALWAYS" />
+                  <Button id="demo" fx:id="clickbutton" alignment="CENTER" mnemonicParsing="false" onAction="#demo" prefHeight="39.0" prefWidth="89.0" text="add-test" textOverrun="WORD_ELLIPSIS" />
+                  <Button fx:id="add" alignment="CENTER" mnemonicParsing="false" onAction="#addWordScene" prefHeight="39.0" prefWidth="75.0" text="Add" textAlignment="CENTER" />
                   <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" text="New Dictionary" textOverrun="WORD_ELLIPSIS" />
                </children>
                <opaqueInsets>
@@ -64,7 +64,6 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="outputText" editable="false" layoutX="1.0" prefHeight="705.0" prefWidth="924.0" promptText="defination stay here" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
              <ImageView fx:id="editbutton" fitHeight="32.0" fitWidth="30.0" layoutX="882.0" layoutY="27.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="24.0">
                <image>
                   <Image url="@image/edit.png" />
@@ -84,10 +83,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
+            <TextArea fx:id="outputText" editable="false" layoutX="1.0" prefHeight="705.0" prefWidth="924.0" promptText="defination stay here" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </center>
    <left>
-      <ListView fx:id="dictList" prefHeight="705.0" prefWidth="358.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="dictList" prefHeight="505.0" prefWidth="305.0" BorderPane.alignment="CENTER" />
    </left>
 </BorderPane>
