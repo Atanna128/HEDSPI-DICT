@@ -1,5 +1,5 @@
 # Dictionary 
-> Easy to look for your book!
+> Its time for you to create your own dictionary and share with others
 
 ___
 ## Table of contents
@@ -56,7 +56,7 @@ The WebApp is compatible with devices of all sizes and all OS's, and consistent 
 
 ## Deployment
 
-Using IBM Cloud Service at https://cloud.ibm.com/
+You can run the code by opening file `dictionary.exe`
 
 ---
 
@@ -65,10 +65,16 @@ Using IBM Cloud Service at https://cloud.ibm.com/
 - All the `code` required to get started
 - Images of what it should look like
 
+### Requirements
+- Kotlin
+- JDK version 11.01 or more
+- Javafx library
+- Javafx Scene Builder ( in case you want to modify the application)
+
 ### Clone
 
-- Clone this repo to your local machine using `https://github.com/nguyennd29/csdl-project`
-- Clone backend repo using `https://github.com/nguyennd29/SERVER-library`
+- Clone this repo to your local machine using `https://github.com/Atanna128/Dictionary`
+
 
 ### Setup
 #### BACKEND
@@ -93,6 +99,8 @@ $ http-server
 ```
  You will then be able to access it at localhost:8080
  Make sure of your internet connection for the access to online elephantsql server.
+ 
+ 
 
 ---
 
