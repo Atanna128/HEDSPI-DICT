@@ -33,7 +33,7 @@ public class Controller implements Initializable {
     public  TreeMap<String,String> dictionary;
     public String dictname;
 
-
+    //done
     public void addWordScene(ActionEvent event) throws IOException {
         Parent addParent = FXMLLoader.load(getClass().getResource("addWord.fxml"));
         Scene addScene =new Scene(addParent);
@@ -46,14 +46,6 @@ public class Controller implements Initializable {
 
     }
 
-
-    // working on it
-    public void addWord(String word, String meaning){
-        dictionary.put(word,meaning);
-        updateListView();
-        updateToFile();
-
-    }
 
     //done
     // set editable for the word's meaning
@@ -125,37 +117,31 @@ public class Controller implements Initializable {
         outputText.setEditable(true);
         outputText.setText(meaning);
         outputText.setEditable(false);
+        autocomplete(input);
+    }
+
+    private void autocomplete(String word) {
+        String recentword = " " + word + "(.*)";
+        dictList.getItems().clear();
+        for (Map.Entry<String,String> entry: dictionary.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            if (key.matches(recentword)) {
+                dictList.getItems().add(key);
+            }
+        }
+
     }
 
     //done
     public String getMeaning(String word){
-        String notfound = "Word not found!";
+        String notfound = "We are still finding for you . . . . \nDont give up on us :)";
         word = " " + word;
         Set<String> keys = dictionary.keySet();
         for (String key : keys ){
             if (key.equals(word)) return dictionary.get(key);
         }
         return notfound;
-    }
-
-    //initialize
-    public void getDict(){
-        try {
-            Dict dict = new Dict();
-            Scanner scanner = new Scanner(new File(getfinalpath("src/sample/listDictionary/textfield")));
-            dictionary = dict.read(new File(getfinalpath("src/sample/listDictionary/textfield")));
-            dictname = dict.getdictname(scanner);
-            for (Map.Entry<String,String> entry: dictionary.entrySet()) {
-                String key   = entry.getKey();
-                String value = entry.getValue();
-                dictList.getItems().add(key);
-//                content.add(key);
-            }
-
-        }catch (FileNotFoundException e){
-            System.out.println("File not found . . . ");
-            e.printStackTrace();
-        }
     }
 
 
@@ -191,6 +177,27 @@ public class Controller implements Initializable {
         }
         return  out;
     }
+
+    //initialize
+    public void getDict(){
+        try {
+            Dict dict = new Dict();
+            Scanner scanner = new Scanner(new File(getfinalpath("src/sample/listDictionary/textfield")));
+            dictionary = dict.read(new File(getfinalpath("src/sample/listDictionary/textfield")));
+            dictname = dict.getdictname(scanner);
+            for (Map.Entry<String,String> entry: dictionary.entrySet()) {
+                String key   = entry.getKey();
+                String value = entry.getValue();
+                dictList.getItems().add(key);
+//                content.add(key);
+            }
+
+        }catch (FileNotFoundException e){
+            System.out.println("Error in getdict(). File not found . . . ");
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

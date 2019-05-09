@@ -58,8 +58,6 @@ public class addWordController implements Initializable {
         Scene addScene =new Scene(addParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);
-        window.setWidth(960);
-        window.setHeight(600);
         window.show();
     }
 
@@ -78,16 +76,9 @@ public class addWordController implements Initializable {
             }
 
         }catch (FileNotFoundException e){
-            System.out.println("File not found . . . ");
+            System.out.println("Error in getdict(). File not found . . . ");
             e.printStackTrace();
         }
-
-        for (Map.Entry<String, String> entry : dictionary.entrySet()) {
-            String key = entry.getKey();
-            String value = entry.getValue();
-            System.out.println(key + " : " + value);
-        }
-
 
     }
 }
