@@ -109,7 +109,7 @@ $ http-server
 
 | <a href="https://github.com/nguyennd29" target="_blank">**Nguyễn Duy Nguyên**</a> | <a href="https://github.com/Atanna128" target="_blank">**Bùi Ngọc Tú**</a> | <a href="https://github.com/snowfox9812" target="_blank">**Nguyễn Đức Trung**</a> | <a href="https://github.com/Hinh1009" target="_blank">**Hoàng Đình Hinh**</a> | 
 | :---: |:---:| :---:| :---:|
-| <img width="200" src="http://hedspi-library.mybluemix.net/images/ava1.jpg"> | <img width="200" src="https://i.imgur.com/nGfQqCM.jpg"> | <img width="200" src="http://hedspi-library.mybluemix.net/images/ava02.jpeg?s=100">  |  <img width="200" src="https://i.imgur.com/nGfQqCM.jpg"> |
+| <img width="200" src="http://hedspi-library.mybluemix.net/images/ava1.jpg"> | <img width="200" src="https://i.imgur.com/nGfQqCM.jpg"> | <img width="200" src="https://avatars3.githubusercontent.com/u/50358382?s=400&v=4">  |  <img width="200" src="https://avatars3.githubusercontent.com/u/50358382?s=400&v=4"> |
 | <a href="http://github.com/nguyennd29" target="_blank">`github.com/nguyennd29`</a> | <a href="http://github.com/Atanna128" target="_blank">`github.com/Atanna128`</a> | <a href="https://github.com/snowfox9812" target="_blank">`github.com/snowfox9812`</a> | <a href="https://github.com/Hinh1009" target="_blank">`github.com/Hinh1009`</a> |
 
 
