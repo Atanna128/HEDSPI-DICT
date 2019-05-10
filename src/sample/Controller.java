@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -31,6 +32,29 @@ public class Controller implements Initializable {
 
     public  TreeMap<String,String> dictionary;
     public String dictname;
+    public Button newdict;
+
+
+
+        public void clickabc(ActionEvent event) {
+
+            Label secondLabel = new Label("I'm a Label on new Window");
+
+            StackPane secondaryLayout = new StackPane();
+            secondaryLayout.getChildren().add(secondLabel);
+
+            Scene secondScene = new Scene(secondaryLayout, 230, 100);
+
+            // New window (Stage)
+            Stage newWindow = new Stage();
+            newWindow.setTitle("Second Stage");
+            newWindow.setScene(secondScene);
+
+
+
+            newWindow.show();
+        }
+
 
     //done
     public void addWordScene(ActionEvent event) throws IOException {
@@ -185,6 +209,8 @@ public class Controller implements Initializable {
         }
         return  out;
     }
+
+    //open popup -> get word/meaning  -> dictionary.put updatetofile/updatelistview
 
     //initialize
     public void getDict(){
