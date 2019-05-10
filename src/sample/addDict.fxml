@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.addDictController">
+   <children>
+      <Label layoutX="304.0" layoutY="126.0" text="Create new dictionary">
+         <font>
+            <Font name="System Bold" size="31.0" />
+         </font>
+      </Label>
+      <TextField fx:id="dictName" layoutX="287.0" layoutY="262.0" prefHeight="46.0" prefWidth="408.0" />
+      <Button layoutX="374.0" layoutY="427.0" mnemonicParsing="false" onAction="#AddtoMainScene" text="Add" />
+      <Button layoutX="537.0" layoutY="427.0" mnemonicParsing="false" onAction="#backToMainScene" text="Cancel" />
+      <Label layoutX="283.0" layoutY="225.0" text="Enter your dictionary's name" />
+      <Label fx:id="warning" layoutX="287.0" layoutY="326.0" text="This name has been used, please choose another name" textFill="#d00909" />
+   </children>
+</AnchorPane>

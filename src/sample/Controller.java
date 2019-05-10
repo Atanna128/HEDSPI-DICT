@@ -8,7 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
+
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
@@ -22,7 +22,6 @@ import java.util.*;
 public class Controller implements Initializable {
     @FXML
     public TextField inputText;
-    public Button clickbutton;
     public TextArea outputText;
     public ImageView editbutton;
     public Menu openrecent;
@@ -42,8 +41,17 @@ public class Controller implements Initializable {
         window.setWidth(960);
         window.setHeight(600);
         window.show();
+    }
 
-
+    //done
+    public void addDictScene(ActionEvent event) throws IOException {
+        Parent addParent = FXMLLoader.load(getClass().getResource("addDict.fxml"));
+        Scene addScene =new Scene(addParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(addScene);
+        window.setWidth(960);
+        window.setHeight(600);
+        window.show();
     }
 
 
