@@ -8,13 +8,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+
+import javax.swing.*;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -36,21 +38,25 @@ public class Controller implements Initializable {
 
 
 
-        public void clickabc(ActionEvent event) {
-            Label secondLabel = new Label("I'm a Label on new Window");
-
-            StackPane secondaryLayout = new StackPane();
+        public void setNewDict(ActionEvent event) {
+            Label secondLabel = new Label("New dictionary");
+            DialogPane secondaryLayout = new DialogPane();
             secondaryLayout.getChildren().add(secondLabel);
+
+            String[] choices = {"abc", "def","ghi"};
+
+//
+//            JComboBox<String> box = new JComboBox<>(choices);
+//            box.setVisible(true);
+//            secondaryLayout.getChildren().add(box);
+
 
             Scene secondScene = new Scene(secondaryLayout, 230, 100);
 
             // New window (Stage)
             Stage newWindow = new Stage();
-            newWindow.setTitle("Second Stage");
+            newWindow.setTitle("New Dictionary");
             newWindow.setScene(secondScene);
-
-
-
             newWindow.show();
         }
 
