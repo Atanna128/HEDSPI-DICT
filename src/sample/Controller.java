@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -127,7 +129,7 @@ public class Controller extends InitializeDict implements Initializable {
     public void searching(Event event){
         String input = inputText.getText();
         String meaning;
-
+        input = " " + input;
         meaning = getMeaning(input);
 
         if (! (meaning == null)) {
@@ -153,10 +155,24 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
+    //working on it
+    public void getListItem(Event event){
+        dictList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                String word = dictList.getSelectionModel().getSelectedItem().toString();
+                String meaning = getMeaning(word);
+                outputText.setEditable(true);
+                outputText.setText(meaning);
+                outputText.setEditable(false);
+                System.out.println(meaning);
+            }
+        });
+    }
+
     //done
     public String getMeaning(String word){
         String notfound = null;
-        word = " " + word;
         Set<String> keys = dictionary.keySet();
         for (String key : keys ){
             if (key.equals(word)) return dictionary.get(key);

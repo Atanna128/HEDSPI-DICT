@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.addWordController">
+<AnchorPane prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.addWordController">
    <children>
       <Label layoutX="361.0" layoutY="84.0" text="Add a new word">
          <font>
@@ -15,11 +16,12 @@
          </font>
       </Label>
       <TextField fx:id="wordAdd" layoutX="276.0" layoutY="194.0" prefHeight="39.0" prefWidth="408.0" />
-      <TextArea fx:id="meaningAdd" layoutX="276.0" layoutY="284.0" prefHeight="131.0" prefWidth="408.0" />
-      <Label layoutX="275.0" layoutY="157.0" text="Word" />
-      <Label layoutX="277.0" layoutY="244.0" text="Meaning" />
+      <TextArea fx:id="meaningAdd" layoutX="276.0" layoutY="263.0" prefHeight="131.0" prefWidth="408.0" />
+      <Label layoutX="276.0" layoutY="176.0" text="Word" />
+      <Label layoutX="276.0" layoutY="246.0" text="Meaning" />
       <Button layoutX="383.0" layoutY="456.0" mnemonicParsing="false" onAction="#AddtoMainScene" text="Add" />
       <Button layoutX="512.0" layoutY="456.0" mnemonicParsing="false" onAction="#backToMainScene" text="Cancel" />
+      <Label layoutX="276.0" layoutY="405.0" prefHeight="39.0" prefWidth="408.0" text="*If the word is already existed, the meaning you define below will overwrite the old meaning" textOverrun="CLIP" wrapText="true" />
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

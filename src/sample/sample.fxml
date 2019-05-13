@@ -92,6 +92,6 @@
       </AnchorPane>
    </center>
    <left>
-      <ListView fx:id="dictList" prefHeight="505.0" prefWidth="305.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="dictList" onMouseClicked="#getListItem" prefHeight="505.0" prefWidth="305.0" BorderPane.alignment="CENTER" />
    </left>
 </BorderPane>
