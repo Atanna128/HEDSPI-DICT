@@ -37,7 +37,6 @@ public class Controller implements Initializable {
 
 
         public void clickabc(ActionEvent event) {
-
             Label secondLabel = new Label("I'm a Label on new Window");
 
             StackPane secondaryLayout = new StackPane();
@@ -145,8 +144,9 @@ public class Controller implements Initializable {
     public void searching(Event event){
         String input = inputText.getText();
         String meaning;
-        meaning = getMeaning(input);
         outputText.setEditable(true);
+        meaning = getMeaning(input);
+
         outputText.setText(meaning);
         outputText.setEditable(false);
         autocomplete(input);
