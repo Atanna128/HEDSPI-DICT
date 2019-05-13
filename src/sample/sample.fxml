@@ -52,7 +52,7 @@
                   <TextField fx:id="inputText" maxWidth="-Infinity" onKeyTyped="#searching" prefColumnCount="0" prefHeight="39.0" prefWidth="297.0" promptText="search" />
                   <Region prefHeight="46.0" prefWidth="279.0" HBox.hgrow="ALWAYS" />
                   <Button fx:id="add" alignment="CENTER" mnemonicParsing="false" onAction="#addWordScene" prefHeight="39.0" prefWidth="75.0" text="Add" textAlignment="CENTER" />
-                  <Button fx:id="newdict" alignment="CENTER" mnemonicParsing="false" onAction="#setNewDict" prefHeight="39.0" prefWidth="174.0" text="New Dictionary" textOverrun="WORD_ELLIPSIS" />
+                  <Button fx:id="newdict" alignment="CENTER" mnemonicParsing="false" onAction="#addDictScene" prefHeight="39.0" prefWidth="174.0" text="New Dictionary" textOverrun="WORD_ELLIPSIS" />
                </children>
                <opaqueInsets>
                   <Insets />

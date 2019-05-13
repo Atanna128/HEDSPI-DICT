@@ -109,13 +109,12 @@ class Dict {
 
 
     void create(String name) throws IOException { // create a text file for dictionary
-        String filename = name + ".txt";
-        File file = new File(filename);
-        file.createNewFile();
-        FileWriter fw = new FileWriter(file);
-        fw.write("#" + name + "#");
-
-        fw.close();
+//        String filename = name + ".txt";
+//        File file = new File(filename);
+//        file.createNewFile();
+//        FileWriter fw = new FileWriter(file);
+//        fw.write("#" + name + "#");
+//        fw.close();
     }
 }
 

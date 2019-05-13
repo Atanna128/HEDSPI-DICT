@@ -11,8 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+
 import javafx.stage.Stage;
 
 
@@ -22,7 +21,7 @@ import java.net.URL;
 import java.util.*;
 
 
-public class Controller implements Initializable {
+public class Controller extends InitializeDict implements Initializable {
     @FXML
     public TextField inputText;
     public TextArea outputText;
@@ -37,28 +36,6 @@ public class Controller implements Initializable {
     public Button newdict;
 
 
-
-        public void setNewDict(ActionEvent event) {
-            Label secondLabel = new Label("New dictionary");
-            DialogPane secondaryLayout = new DialogPane();
-            secondaryLayout.getChildren().add(secondLabel);
-
-            String[] choices = {"abc", "def","ghi"};
-
-//
-//            JComboBox<String> box = new JComboBox<>(choices);
-//            box.setVisible(true);
-//            secondaryLayout.getChildren().add(box);
-
-
-            Scene secondScene = new Scene(secondaryLayout, 230, 100);
-
-            // New window (Stage)
-            Stage newWindow = new Stage();
-            newWindow.setTitle("New Dictionary");
-            newWindow.setScene(secondScene);
-            newWindow.show();
-        }
 
 
     //done
@@ -156,6 +133,8 @@ public class Controller implements Initializable {
         if (! (meaning == null)) {
             outputText.setEditable(true);
             outputText.setText(meaning);
+        }else{
+            outputText.clear();
         }
         outputText.setEditable(false);
         autocomplete(input);
@@ -189,37 +168,21 @@ public class Controller implements Initializable {
     // still working on it, but have no idea :(
     // choicebox / choicedialog ?
     public void openFile(Event event){
-        String filename = "da";
-        System.out.println("select file : " + filename );
     }
 
+    //initialize
     //done
     //list all file in folder listDictionary
+    @Override
     public void listFile(File dir) {
-        int i = 0;
         String getname;
         File[] files = dir.listFiles();
         for (File file: files) {
             getname = file.getName();
             openrecent.getItems().add(new MenuItem(getname));
-            i++;
         }
     }
 
-    public String getfinalpath(String getfile) {
-        File file = new File(getfile);
-        String pathname = file.getAbsolutePath();
-
-        String out = "";
-        for (int i = 0 ; i < getfile.length() ; i++){
-            if (getfile.charAt(i) ==  '\\'){
-                out = out + "/";
-            }else out = out + getfile.charAt(i);
-        }
-        return  out;
-    }
-
-    //open popup -> get word/meaning  -> dictionary.put updatetofile/updatelistview
 
     //initialize
     public void getDict(){
