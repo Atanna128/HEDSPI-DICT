@@ -144,10 +144,13 @@ public class Controller implements Initializable {
     public void searching(Event event){
         String input = inputText.getText();
         String meaning;
-        outputText.setEditable(true);
+
         meaning = getMeaning(input);
 
-        outputText.setText(meaning);
+        if (! (meaning == null)) {
+            outputText.setEditable(true);
+            outputText.setText(meaning);
+        }
         outputText.setEditable(false);
         autocomplete(input);
     }
@@ -167,7 +170,7 @@ public class Controller implements Initializable {
 
     //done
     public String getMeaning(String word){
-        String notfound = "We are still finding for you . . . . \nDont give up on us :)";
+        String notfound = null;
         word = " " + word;
         Set<String> keys = dictionary.keySet();
         for (String key : keys ){
