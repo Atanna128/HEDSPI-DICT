@@ -50,7 +50,7 @@ public class Controller extends InitializeDict implements Initializable {
     // 2 kiểu đối tượng TreeMap / String dictname
 
     //WORKING :
-    // chọn mở từ điển mới
+    // open new dictionary from primaryStage
     // fix resizable primaryStage
 
 
