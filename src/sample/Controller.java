@@ -199,12 +199,11 @@ public class Controller extends InitializeDict implements Initializable {
     }
 
     //initialize
-    //done
     //list all file in folder listDictionary
     @Override
     public void listFile(File dir) {
         String getname;
-        File[] files = dir.listFiles();
+        File[] files = dir.listFiles();// đưa ra toàn bộ danh sách các file có trong folder
         for (File file: files) {
             getname = file.getName();
             openrecent.getItems().add(new MenuItem(getname));
@@ -232,12 +231,11 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
-
+    //initialize
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getDict();
         listFile(new File(getfinalpath("src/sample/listDictionary/")));
-
     }
 
 }

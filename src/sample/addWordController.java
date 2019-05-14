@@ -76,7 +76,6 @@ public class addWordController implements Initializable {
             }
 
         }catch (FileNotFoundException e){
-            System.out.println("Error in getdict(). File not found . . . ");
             e.printStackTrace();
         }
 

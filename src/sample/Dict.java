@@ -2,9 +2,7 @@ package sample;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Map;
+
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -13,16 +11,15 @@ import java.lang.String;
 
 class Dict {
 
-    public String open = "{";
-    public String next = ";";
-    public String end = "}";
+    private String open = "{";
+    private String next = ";";
+    private String end = "}";
     String dictname;
     TreeMap<String,String> dictionary = new TreeMap<>();
-//    TreeMap<String, String> dict = new TreeMap<>();
-    // # name # {word ; meaning}
+    // Format of sample dictionary   # name # {word ; meaning}
 
 
-    public TreeMap<String,String> read(File filename) throws FileNotFoundException {
+     TreeMap<String,String> read(File filename) throws FileNotFoundException {
         TreeMap<String,String> a;
         String dictname;
 //        File file = new File(filename);
@@ -34,11 +31,11 @@ class Dict {
         return  a;
     }
 
-    public String getdictname(Scanner scanner) {
+     String getdictname(Scanner scanner) {
         String check;
         String dictname = "";
         String errorstring = "";
-        int errorcode = 0;
+
 
         while (scanner.hasNext()) {
             check = scanner.next();
@@ -48,27 +45,17 @@ class Dict {
                 } // lấy xong dict-name trong # #
                 break;
             } else {
-                errorcode++;
                 errorstring = errorstring + " " + check;
             }
         }
-        if (errorcode > 0)
+        if (!errorstring.equals(""))
             System.out.println("Dictionary should start with # dict-name #" + "\nMisformatted string : " + errorstring);
 
         return dictname;
     }
 
-    public void getalldata(TreeMap<String,String> a) {
-        // System.out.println("Word : Meaning");
-        for (Map.Entry<String, String> entry : a.entrySet()) {
-            String key = entry.getKey();
-            String value = entry.getValue();
-            System.out.println(key + " : " + value);
-        }
-    }
 
-    public TreeMap<String,String> inputdata(Scanner scanner) {
-
+     TreeMap<String,String> inputdata(Scanner scanner) {
         TreeMap<String,String> a = new TreeMap<>();
         String get;
         String word;
@@ -95,26 +82,6 @@ class Dict {
         return  a;
     }
 
-    private static void createnewdict() throws IOException {
-        Dict dictionary = new Dict();
-        String getname;
-        System.out.println("Enter new dictionary name");
-        Scanner scanner = new Scanner(System.in);
-        getname = scanner.nextLine();
-        dictionary.create(getname);
-        // dictionary
 
-        scanner.close();
-    }
-
-
-    void create(String name) throws IOException { // create a text file for dictionary
-//        String filename = name + ".txt";
-//        File file = new File(filename);
-//        file.createNewFile();
-//        FileWriter fw = new FileWriter(file);
-//        fw.write("#" + name + "#");
-//        fw.close();
-    }
 }
 
