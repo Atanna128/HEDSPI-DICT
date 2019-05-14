@@ -38,10 +38,19 @@ public class Controller extends InitializeDict implements Initializable {
     public Button newdict;
 
 
+    // Trong controller này có 2 kiểu đối tượng TreeMap và ListView. Treemap là nơi danh sách các từ được load vào, đồng
+    // thời được add vào ListView để hiển thị.
+    // Trên lý thuyết, để tối ưu thì ta phải coi TreeMap như 1 ObservableList và truyền cho ListView. Khi đó, nếu có
+    // bất cứ thay đổi nào ở ObservableList thì ListView sẽ tự cập nhật, và khi đấy có thể lược bỏ hàm updateListView()
+
+    // hàm initialize là hàm khởi tạo, ở đây tất cả các chức năng ( trừ addWord/addDict) đều tương tác với nội dung
+    // từ điển ( TreeMap) vì vậy phải load toàn bộ dữ liệu của từ điển ( Trong file thuộc folder listDictionary) vào
+    // 2 kiểu đối tượng TreeMap / String dictname
 
 
     //done
     public void addWordScene(ActionEvent event) throws IOException {
+        //  copy từ main
         Parent addParent = FXMLLoader.load(getClass().getResource("addWord.fxml"));
         Scene addScene =new Scene(addParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -53,6 +62,7 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     public void addDictScene(ActionEvent event) throws IOException {
+        // copy từ main
         Parent addParent = FXMLLoader.load(getClass().getResource("addDict.fxml"));
         Scene addScene =new Scene(addParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -66,11 +76,11 @@ public class Controller extends InitializeDict implements Initializable {
     //done
     // set editable for the word's meaning
     public void edit(MouseEvent mouseEvent){
-        if(outputText.isEditable()){
+        if(outputText.isEditable()){  // khóa edit để bắt đầu update từ
             outputText.setEditable(false);
             editMeaning();
         }else {
-            outputText.setEditable(true);
+            outputText.setEditable(true); // mở để bắt đầu edit
         }
     }
 
@@ -88,7 +98,7 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     private void updateListView() {
-        dictList.getItems().clear();
+        dictList.getItems().clear(); // xóa ListView + add lại sau khi đã chỉnh sửa treemap
         for (Map.Entry<String,String> entry: dictionary.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
@@ -102,12 +112,15 @@ public class Controller extends InitializeDict implements Initializable {
         String meaning;
         word = " " + inputText.getText();
         meaning = outputText.getText();
-        dictionary.replace(word,meaning);
+        if (dictionary.containsKey(word)){ // if trong trường hợp click edit khi chưa search xong 1 từ nào
+            dictionary.replace(word,meaning); // update từ
+        }
         updateToFile();
     }
 
     //done
-    private void updateToFile() {
+    private void updateToFile() { // private void updateToFile(String filename){}
+        // mở file và viết lại vào theo format định sẵn ( dựa trên Treemap / dictname đã đc gán giá trị trong hàm getDict()
         try {
             FileWriter writer = new FileWriter(getfinalpath("src/sample/listDictionary/textfield"));
             BufferedWriter buffer = new BufferedWriter(writer);
@@ -155,7 +168,7 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
-    //working on it
+    //done
     public void getListItem(Event event){
         dictList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -165,7 +178,6 @@ public class Controller extends InitializeDict implements Initializable {
                 outputText.setEditable(true);
                 outputText.setText(meaning);
                 outputText.setEditable(false);
-                System.out.println(meaning);
             }
         });
     }
