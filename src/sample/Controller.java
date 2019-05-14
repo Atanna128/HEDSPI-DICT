@@ -144,7 +144,7 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     private void autocomplete(String word) {
-        String recentword = " " + word + "(.*)";
+        String recentword =  word + "(.*)";
         dictList.getItems().clear();
         for (Map.Entry<String,String> entry: dictionary.entrySet()) {
             String key = entry.getKey();
