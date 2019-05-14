@@ -22,9 +22,9 @@ public class addWordController implements Initializable {
     public TextField wordAdd;
     public TextArea meaningAdd;
 
-    public TreeMap<String,String> dictionary;
-    public String dictname;
-    Controller controller = new Controller();
+    private TreeMap<String,String> dictionary;
+    private String dictname;
+    private Controller controller = new Controller();
 
     public void AddtoMainScene(ActionEvent event) throws IOException {
         String wordadd = wordAdd.getText();
@@ -68,13 +68,6 @@ public class addWordController implements Initializable {
             Dict dict = new Dict();
             Scanner scanner = new Scanner(new File(controller.getfinalpath("src/sample/listDictionary/textfield")));
             dictionary = dict.read(new File(controller.getfinalpath("src/sample/listDictionary/textfield")));
-            dictname = dict.getdictname(scanner);
-            System.out.println("dictname = " + dictname);
-            for (Map.Entry<String,String> entry: dictionary.entrySet()) {
-                String key   = entry.getKey();
-                String value = entry.getValue();
-            }
-
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }

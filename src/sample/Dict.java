@@ -20,15 +20,11 @@ class Dict {
 
 
      TreeMap<String,String> read(File filename) throws FileNotFoundException {
-        TreeMap<String,String> a;
-        String dictname;
-//        File file = new File(filename);
+        TreeMap<String,String> map;
         Scanner scanner = new Scanner(filename);
-        dictname = getdictname(scanner);
-        a = inputdata(scanner);
-//        getalldata(a);
+        map = inputdata(scanner);
         scanner.close();
-        return  a;
+        return  map;
     }
 
      String getdictname(Scanner scanner) {
@@ -48,9 +44,9 @@ class Dict {
                 errorstring = errorstring + " " + check;
             }
         }
-        if (!errorstring.equals(""))
+        if (!errorstring.equals("")) {
             System.out.println("Dictionary should start with # dict-name #" + "\nMisformatted string : " + errorstring);
-
+        }
         return dictname;
     }
 

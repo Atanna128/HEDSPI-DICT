@@ -25,12 +25,11 @@ public class addDictController extends InitializeDict implements Initializable {
     public Label warning;
     public ChoiceBox choiceBox;
 
-    ArrayList<String> listname = new ArrayList<>();
+    private ArrayList<String> listname = new ArrayList<>();
     public void AddtoMainScene(ActionEvent event) throws IOException {
         if (!check(event)) {
             String dictname = dictName.getText();
             create(dictname);
-
             backToMainScene(event);
         }
     }
@@ -54,7 +53,7 @@ public class addDictController extends InitializeDict implements Initializable {
         }
     }
 
-    public boolean compareToChoiceBox(String dictname){
+    private boolean compareToChoiceBox(String dictname){
         for (String name : listname ){
             if(dictname.equals(name)){
                 return true;

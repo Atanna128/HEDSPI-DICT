@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
 
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -36,6 +37,7 @@ public class Controller extends InitializeDict implements Initializable {
     public  TreeMap<String,String> dictionary;
     public String dictname;
     public Button newdict;
+    public Text setDictname;
 
 
     // Trong controller này có 2 kiểu đối tượng TreeMap và ListView. Treemap là nơi danh sách các từ được load vào, đồng
@@ -46,6 +48,10 @@ public class Controller extends InitializeDict implements Initializable {
     // hàm initialize là hàm khởi tạo, ở đây tất cả các chức năng ( trừ addWord/addDict) đều tương tác với nội dung
     // từ điển ( TreeMap) vì vậy phải load toàn bộ dữ liệu của từ điển ( Trong file thuộc folder listDictionary) vào
     // 2 kiểu đối tượng TreeMap / String dictname
+
+    //WORKING :
+    // chọn mở từ điển mới
+    // fix resizable primaryStage
 
 
     //done
@@ -218,11 +224,11 @@ public class Controller extends InitializeDict implements Initializable {
             Scanner scanner = new Scanner(new File(getfinalpath("src/sample/listDictionary/textfield")));
             dictionary = dict.read(new File(getfinalpath("src/sample/listDictionary/textfield")));
             dictname = dict.getdictname(scanner);
+            setDictname.setText(dictname);
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
                 String key   = entry.getKey();
                 String value = entry.getValue();
                 dictList.getItems().add(key);
-//                content.add(key);
             }
 
         }catch (FileNotFoundException e){

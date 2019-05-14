@@ -1,5 +1,7 @@
 package sample;
 
+// không dùng làm gì đâu :(
+
 public class Word {
     private String word;
     private String meaning;
