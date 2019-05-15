@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -29,10 +29,6 @@
                   <items>
                         <MenuItem mnemonicParsing="false" text="New" />
                         <MenuItem mnemonicParsing="false" text="Open" />
-                        <Menu fx:id="openrecent" mnemonicParsing="false" onMenuValidation="#openFile" text="Open recent">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="abc" />
-                           </items></Menu>
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -47,10 +43,15 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <HBox alignment="CENTER" prefHeight="46.0" prefWidth="1260.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="940.0">
                <children>
-                  <TextField fx:id="inputText" maxWidth="-Infinity" onKeyTyped="#searching" prefColumnCount="0" prefHeight="39.0" prefWidth="297.0" promptText="search" />
-                  <Region prefHeight="46.0" prefWidth="279.0" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="inputText" maxWidth="-Infinity" onKeyTyped="#searching" prefColumnCount="0" prefHeight="39.0" prefWidth="302.0" promptText="search" />
+                  <AnchorPane prefHeight="61.0" prefWidth="380.0">
+                     <children>
+                        <ChoiceBox fx:id="choicebox" layoutX="114.0" layoutY="24.0" prefHeight="25.0" prefWidth="200.0" />
+                        <Text layoutX="116.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of dictionary" wrappingWidth="122.13543701171875" />
+                     </children>
+                  </AnchorPane>
                   <Button fx:id="add" alignment="CENTER" mnemonicParsing="false" onAction="#addWordScene" prefHeight="39.0" prefWidth="75.0" text="Add" textAlignment="CENTER" />
                   <Button fx:id="newdict" alignment="CENTER" mnemonicParsing="false" onAction="#addDictScene" prefHeight="39.0" prefWidth="174.0" text="New Dictionary" textOverrun="WORD_ELLIPSIS" />
                </children>
@@ -74,7 +75,6 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <TextArea fx:id="outputText" editable="false" layoutX="1.0" prefHeight="705.0" prefWidth="924.0" promptText="defination stay here" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Text fx:id="setDictname" layoutX="577.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dictionary" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
             <ImageView fx:id="editbutton" fitHeight="32.0" fitWidth="30.0" layoutX="595.0" layoutY="21.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
                <image>
                   <Image url="@image/edit.png" />

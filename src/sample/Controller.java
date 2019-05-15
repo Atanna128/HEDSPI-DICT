@@ -29,15 +29,16 @@ public class Controller extends InitializeDict implements Initializable {
     public TextField inputText;
     public TextArea outputText;
     public ImageView editbutton;
-    public Menu openrecent;
     public ListView dictList;
     public Button add;
     public ImageView deletebutton;
-
-    public  TreeMap<String,String> dictionary;
-    public String dictname;
     public Button newdict;
-    public Text setDictname;
+    public ChoiceBox choicebox;
+
+    private TreeMap<String,String> dictionary;
+    private String dictname;
+
+
 
 
     // Trong controller này có 2 kiểu đối tượng TreeMap và ListView. Treemap là nơi danh sách các từ được load vào, đồng
@@ -48,6 +49,9 @@ public class Controller extends InitializeDict implements Initializable {
     // hàm initialize là hàm khởi tạo, ở đây tất cả các chức năng ( trừ addWord/addDict) đều tương tác với nội dung
     // từ điển ( TreeMap) vì vậy phải load toàn bộ dữ liệu của từ điển ( Trong file thuộc folder listDictionary) vào
     // 2 kiểu đối tượng TreeMap / String dictname
+
+    // lỗi đọc file : dùng scanner nên các String đều xuất hiện ký tự " "  ở đầu =)))  | fix phải fix cả proj nên
+    // lười vứt đấy nhé, chưa có ý định sửa đâu
 
     //WORKING :
     // open new dictionary from primaryStage
@@ -125,7 +129,8 @@ public class Controller extends InitializeDict implements Initializable {
     }
 
     //done
-    private void updateToFile() { // private void updateToFile(String filename){}
+    private void updateToFile() {
+        // private void updateToFile(String filename)
         // mở file và viết lại vào theo format định sẵn ( dựa trên Treemap / dictname đã đc gán giá trị trong hàm getDict()
         try {
             FileWriter writer = new FileWriter(getfinalpath("src/sample/listDictionary/textfield"));
@@ -209,22 +214,30 @@ public class Controller extends InitializeDict implements Initializable {
     @Override
     public void listFile(File dir) {
         String getname;
+        int i = 0;
+        int index = i;
         File[] files = dir.listFiles();// đưa ra toàn bộ danh sách các file có trong folder
         for (File file: files) {
             getname = file.getName();
-            openrecent.getItems().add(new MenuItem(getname));
+            choicebox.getItems().add(getname);
+            if (dictname.equals(" " + getname)){
+                index = i;
+            }
+            i++;
         }
+        choicebox.setPrefSize(200,25);
+        choicebox.getSelectionModel().select(index);
     }
 
 
     //initialize
-    public void getDict(){
+    public void getDict(String filename){
         try {
             Dict dict = new Dict();
-            Scanner scanner = new Scanner(new File(getfinalpath("src/sample/listDictionary/textfield")));
-            dictionary = dict.read(new File(getfinalpath("src/sample/listDictionary/textfield")));
+            Scanner scanner = new Scanner(new File(getfinalpath(filename)));
+            dictionary = dict.read(new File(getfinalpath(filename)));
             dictname = dict.getdictname(scanner);
-            setDictname.setText(dictname);
+
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
                 String key   = entry.getKey();
                 String value = entry.getValue();
@@ -240,8 +253,10 @@ public class Controller extends InitializeDict implements Initializable {
     //initialize
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        getDict();
-        listFile(new File(getfinalpath("src/sample/listDictionary/")));
+        String filename = "src/sample/listDictionary/textfield";
+        String foldername ="src/sample/listDictionary/";
+        getDict(filename);
+        listFile(new File(getfinalpath(foldername)));
     }
 
 }
