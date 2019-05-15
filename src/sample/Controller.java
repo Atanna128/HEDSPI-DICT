@@ -13,11 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
-
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-
 import javax.swing.*;
 import java.io.*;
 import java.net.URL;
@@ -35,8 +31,8 @@ public class Controller extends InitializeDict implements Initializable {
     public Button newdict;
     public ChoiceBox choicebox;
 
-    private TreeMap<String,String> dictionary;
-    private String dictname;
+    private static TreeMap<String,String> dictionary;
+    private static String dictname;
 
 
 
@@ -56,7 +52,6 @@ public class Controller extends InitializeDict implements Initializable {
     //WORKING :
     // open new dictionary from primaryStage
     // fix resizable primaryStage
-
 
     //done
     public void addWordScene(ActionEvent event) throws IOException {
@@ -166,6 +161,17 @@ public class Controller extends InitializeDict implements Initializable {
         autocomplete(input);
     }
 
+
+    //done
+    private String getMeaning(String word){
+        String notfound = null;
+        Set<String> keys = dictionary.keySet();
+        for (String key : keys ){
+            if (key.equals(word)) return dictionary.get(key);
+        }
+        return notfound;
+    }
+
     //done
     private void autocomplete(String word) {
         String recentword =  word + "(.*)";
@@ -193,20 +199,38 @@ public class Controller extends InitializeDict implements Initializable {
         });
     }
 
-    //done
-    private String getMeaning(String word){
-        String notfound = null;
-        Set<String> keys = dictionary.keySet();
-        for (String key : keys ){
-            if (key.equals(word)) return dictionary.get(key);
-        }
-        return notfound;
-    }
 
 
     // still working on it, but have no idea :(
     // choicebox / choicedialog ?
-    public void openFile(Event event){
+    public void openDictionary(Event event){
+        choicebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object o, Object t1) {
+                String name = choicebox.getSelectionModel().getSelectedItem().toString();
+                String abc = "src/sample/listDictionary/" + name;
+
+                try {
+                    Dict dict = new Dict();
+                    Scanner scanner = new Scanner(new File(getfinalpath(abc)));
+                    dictionary = dict.read(new File(getfinalpath(abc)));
+                    dictname = dict.getdictname(scanner);
+                    for (Map.Entry<String,String> entry: dictionary.entrySet()) {
+                        String key   = entry.getKey();
+                        String value = entry.getValue();
+                        dictList.getItems().add(key);
+                    }
+                    updateListView();
+                }catch (FileNotFoundException e){
+
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        });
+
     }
 
     //initialize
@@ -240,8 +264,8 @@ public class Controller extends InitializeDict implements Initializable {
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
                 String key   = entry.getKey();
                 String value = entry.getValue();
-                dictList.getItems().add(key);            }
-
+                dictList.getItems().add(key);
+            }
         }catch (FileNotFoundException e){
             System.out.println("Error in getdict(). File not found . . . ");
             e.printStackTrace();

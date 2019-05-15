@@ -33,7 +33,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" text="Nothing here" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -48,7 +48,7 @@
                   <TextField fx:id="inputText" maxWidth="-Infinity" onKeyTyped="#searching" prefColumnCount="0" prefHeight="39.0" prefWidth="302.0" promptText="search" />
                   <AnchorPane prefHeight="61.0" prefWidth="380.0">
                      <children>
-                        <ChoiceBox fx:id="choicebox" layoutX="114.0" layoutY="24.0" prefHeight="25.0" prefWidth="200.0" />
+                        <ChoiceBox fx:id="choicebox" layoutX="114.0" layoutY="24.0" onMouseClicked="#openDictionary" prefHeight="25.0" prefWidth="200.0" />
                         <Text layoutX="116.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of dictionary" wrappingWidth="122.13543701171875" />
                      </children>
                   </AnchorPane>

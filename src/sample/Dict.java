@@ -31,14 +31,12 @@ class Dict {
         String check;
         String dictname = "";
         String errorstring = "";
-
-
         while (scanner.hasNext()) {
             check = scanner.next();
             if (check.equals("#")) {
                 while (!(check = scanner.next()).equals("#")) {
                     dictname = dictname + " " + check;
-                } // lấy xong dict-name trong # #
+                } // lấy dict-name trong # #
                 break;
             } else {
                 errorstring = errorstring + " " + check;
