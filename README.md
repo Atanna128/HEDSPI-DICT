@@ -2,29 +2,6 @@
 > Its time for you to create your own dictionary and share with others
 
 ___
-## General info
-
-
----
-
-## Screenshots
-
-### Landing Page
-
- 
-
-### Search Page
-
-### Book Detail Page
-
-### Mobile support
-
-
-
-
----
-## Technologies
-
 
 
 ## Deployment
