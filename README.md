@@ -2,50 +2,7 @@
 > Its time for you to create your own dictionary and share with others
 
 ___
-## Table of contents
-* [General info](#general-info)
-* [Screenshots](#screenshots)
-* [Technologies](#technologies)
-* [Setup](#setup)
-* [Deployment](#deployment)
-* [Team](#team)
-* [Contribution](#contribution)
-* [License](#license)
----
-## General info
 
-
----
-
-## Screenshots
-
-### Landing Page
-
- 
-
-### Search Page
-
-### Book Detail Page
-
-### Mobile support
-
-
-
-
----
-## Technologies
-### FRONTEND
-
-
-### BACKEND
-
-
-- [node-postgres](https://node-postgres.com) - node-postgres is a collection of node.js modules for interfacing with your PostgreSQL database. 
-
-### DATABASE
-- [PostgreSQL](https://www.elephantsql.com) - ElephantSQL automates every part of setup and running of PostgreSQL clusters. Available on all major cloud and application platforms all over the world.
-
----
 
 ## Deployment
 
@@ -68,14 +25,6 @@ You can run the code by opening file `dictionary.exe`
 
 - Clone this repo to your local machine using `https://github.com/Atanna128/Dictionary`
 
-
-### Setup
-#### BACKEND
-
-
-#### FRONTEND
-
- 
  
 
 ---
@@ -98,6 +47,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ---
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
