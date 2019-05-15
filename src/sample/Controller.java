@@ -117,7 +117,7 @@ public class Controller extends InitializeDict implements Initializable {
     }
 
     //done
-    public void editMeaning(){
+    private void editMeaning(){
         String word;
         String meaning;
         word = " " + inputText.getText();
@@ -194,7 +194,7 @@ public class Controller extends InitializeDict implements Initializable {
     }
 
     //done
-    public String getMeaning(String word){
+    private String getMeaning(String word){
         String notfound = null;
         Set<String> keys = dictionary.keySet();
         for (String key : keys ){
@@ -231,18 +231,16 @@ public class Controller extends InitializeDict implements Initializable {
 
 
     //initialize
-    public void getDict(String filename){
+    private void getDict(String filename){
         try {
             Dict dict = new Dict();
             Scanner scanner = new Scanner(new File(getfinalpath(filename)));
             dictionary = dict.read(new File(getfinalpath(filename)));
             dictname = dict.getdictname(scanner);
-
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
                 String key   = entry.getKey();
                 String value = entry.getValue();
-                dictList.getItems().add(key);
-            }
+                dictList.getItems().add(key);            }
 
         }catch (FileNotFoundException e){
             System.out.println("Error in getdict(). File not found . . . ");
@@ -255,6 +253,7 @@ public class Controller extends InitializeDict implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String filename = "src/sample/listDictionary/textfield";
         String foldername ="src/sample/listDictionary/";
+
         getDict(filename);
         listFile(new File(getfinalpath(foldername)));
     }

@@ -1,8 +1,12 @@
 package sample;
 
 import java.io.File;
+import java.util.TreeMap;
 
 public abstract class InitializeDict {
+
+    TreeMap<String,String> dictionary = new TreeMap<>();
+    String dictname;
 
     public void listFile(File dir){
         String getname;
@@ -11,7 +15,7 @@ public abstract class InitializeDict {
         }
     }
 
-    public String getfinalpath(String getfile) {
+    String getfinalpath(String getfile) {
         File file = new File(getfile);
         String pathname = file.getAbsolutePath();
 
@@ -23,4 +27,6 @@ public abstract class InitializeDict {
         }
         return  out;
     }
+
+
 }
