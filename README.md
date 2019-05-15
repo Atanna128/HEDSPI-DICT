@@ -25,14 +25,6 @@ You can run the code by opening file `dictionary.exe`
 
 - Clone this repo to your local machine using `https://github.com/Atanna128/Dictionary`
 
-
-### Setup
-#### BACKEND
-
-
-#### FRONTEND
-
- 
  
 
 ---
