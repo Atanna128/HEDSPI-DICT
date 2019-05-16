@@ -4,16 +4,25 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -54,7 +63,6 @@ public class Controller extends InitializeDict implements Initializable {
     // open new dictionary from primaryStage
     // fix resizable primaryStage
 
-    //done
     public void addWordScene(ActionEvent event) throws IOException {
         //  copy từ main
         Parent addParent = FXMLLoader.load(getClass().getResource("addWord.fxml"));
@@ -66,7 +74,6 @@ public class Controller extends InitializeDict implements Initializable {
         window.show();
     }
 
-    //done
     public void addDictScene(ActionEvent event) throws IOException {
         // copy từ main
         Parent addParent = FXMLLoader.load(getClass().getResource("addDict.fxml"));
@@ -78,9 +85,6 @@ public class Controller extends InitializeDict implements Initializable {
         window.show();
     }
 
-
-    //done
-    // set editable for the word's meaning
     public void edit(MouseEvent mouseEvent){
         if(outputText.isEditable()){  // khóa edit để bắt đầu update từ
             outputText.setEditable(false);
@@ -90,7 +94,6 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
-    //done
     public void delete(MouseEvent event){
         String word;
         word = " " + inputText.getText();
@@ -102,7 +105,6 @@ public class Controller extends InitializeDict implements Initializable {
 
     }
 
-    //done
     private void updateListView() {
         dictList.getItems().clear(); // xóa ListView + add lại sau khi đã chỉnh sửa treemap
         for (Map.Entry<String,String> entry: dictionary.entrySet()) {
@@ -111,7 +113,6 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
-    //done
     private void editMeaning(){
         String word;
         String meaning;
@@ -123,7 +124,6 @@ public class Controller extends InitializeDict implements Initializable {
         updateToFile(dictname);
     }
 
-    //done
     private void updateToFile(String filename) {
         // mở file và viết lại vào theo format định sẵn ( dựa trên Treemap / dictname đã đc gán giá trị trong hàm getDict()
         try {
@@ -143,7 +143,6 @@ public class Controller extends InitializeDict implements Initializable {
 
     }
 
-    //done // find the meaning and show it on right textarea
     public void searching(Event event){
         String input = inputText.getText();
         String meaning;
@@ -160,8 +159,6 @@ public class Controller extends InitializeDict implements Initializable {
         autocomplete(input);
     }
 
-
-    //done
     private String getMeaning(String word){
         String notfound = null;
         Set<String> keys = dictionary.keySet();
@@ -171,7 +168,6 @@ public class Controller extends InitializeDict implements Initializable {
         return notfound;
     }
 
-    //done
     private void autocomplete(String word) {
         String recentword =  word + "(.*)";
         dictList.getItems().clear();
@@ -184,7 +180,6 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
-    //done
     public void getListItem(Event event){
         dictList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -198,8 +193,6 @@ public class Controller extends InitializeDict implements Initializable {
         });
     }
 
-
-    //done
     public void openDictionary(Event event){
         choicebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -235,7 +228,6 @@ public class Controller extends InitializeDict implements Initializable {
         choicebox.setPrefSize(200,25);
         choicebox.getSelectionModel().select(index);
     }
-
 
     //initialize
     private void getDict(String filename){
