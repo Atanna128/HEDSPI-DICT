@@ -38,6 +38,8 @@ public class Controller extends InitializeDict implements Initializable {
 
 
 
+
+
     // Trong controller này có 2 kiểu đối tượng TreeMap và ListView. Treemap là nơi danh sách các từ được load vào, đồng
     // thời được add vào ListView để hiển thị.
     // Trên lý thuyết, để tối ưu thì ta phải coi TreeMap như 1 ObservableList và truyền cho ListView. Khi đó, nếu có
