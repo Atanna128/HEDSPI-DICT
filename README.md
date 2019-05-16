@@ -6,7 +6,7 @@ ___
 
 ## Deployment
 
-You can run the code by opening file `dictionary.exe`
+You can run the code by opening file `main.java`
 
 ---
 
