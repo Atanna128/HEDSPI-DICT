@@ -14,7 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
-import javax.swing.*;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -33,6 +32,7 @@ public class Controller extends InitializeDict implements Initializable {
 
     private static TreeMap<String,String> dictionary;
     private static String dictname;
+    private static ArrayList<String> order;
 
 
 
@@ -97,7 +97,7 @@ public class Controller extends InitializeDict implements Initializable {
         outputText.clear();
         inputText.clear();
         updateListView();
-        updateToFile();
+        updateToFile(dictname);
 
     }
 
@@ -106,7 +106,6 @@ public class Controller extends InitializeDict implements Initializable {
         dictList.getItems().clear(); // xóa ListView + add lại sau khi đã chỉnh sửa treemap
         for (Map.Entry<String,String> entry: dictionary.entrySet()) {
             String key = entry.getKey();
-            String value = entry.getValue();
             dictList.getItems().add(key);
         }
     }
@@ -120,15 +119,15 @@ public class Controller extends InitializeDict implements Initializable {
         if (dictionary.containsKey(word)){ // if trong trường hợp click edit khi chưa search xong 1 từ nào
             dictionary.replace(word,meaning); // update từ
         }
-        updateToFile();
+        updateToFile(dictname);
     }
 
     //done
-    private void updateToFile() {
-        // private void updateToFile(String filename)
+    private void updateToFile(String filename) {
+
         // mở file và viết lại vào theo format định sẵn ( dựa trên Treemap / dictname đã đc gán giá trị trong hàm getDict()
         try {
-            FileWriter writer = new FileWriter(getfinalpath("src/sample/listDictionary/textfield"));
+            FileWriter writer = new FileWriter(getfinalpath("src/sample/listDictionary/" + filename));
             BufferedWriter buffer = new BufferedWriter(writer);
             buffer.write(" # " + dictname + " # "); // follow the format
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
@@ -209,25 +208,10 @@ public class Controller extends InitializeDict implements Initializable {
             public void changed(ObservableValue observableValue, Object o, Object t1) {
                 String name = choicebox.getSelectionModel().getSelectedItem().toString();
                 String abc = "src/sample/listDictionary/" + name;
-
-                try {
-                    Dict dict = new Dict();
-                    Scanner scanner = new Scanner(new File(getfinalpath(abc)));
-                    dictionary = dict.read(new File(getfinalpath(abc)));
-                    dictname = dict.getdictname(scanner);
-                    for (Map.Entry<String,String> entry: dictionary.entrySet()) {
-                        String key   = entry.getKey();
-                        String value = entry.getValue();
-                        dictList.getItems().add(key);
-                    }
-                    updateListView();
-                }catch (FileNotFoundException e){
-
-                    e.printStackTrace();
-                }
-
-
-
+                getDict(abc);
+                updateListView();
+                outputText.clear();
+                inputText.clear();
             }
         });
 
@@ -272,14 +256,37 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
+    @Override
+    public void dictOrder(){
+        String name;
+        try {
+            Scanner scanner = new Scanner(new File(getfinalpath("src/sample/dictOrder/listOrder")));
+//            while (scanner.hasNextLine()) {
+//                name = scanner.nextLine();
+//                order.add(name);
+//            }
+//            for (String a : order) {
+//                System.out.println(a);
+//            }
+            scanner.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateDictOrder() {
+
+    }
+
     //initialize
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String filename = "src/sample/listDictionary/textfield";
         String foldername ="src/sample/listDictionary/";
-
         getDict(filename);
         listFile(new File(getfinalpath(foldername)));
+        dictOrder();
     }
 
 }

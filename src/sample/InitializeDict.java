@@ -1,6 +1,7 @@
 package sample;
 
 import java.io.File;
+
 import java.util.TreeMap;
 
 public abstract class InitializeDict {
@@ -8,12 +9,11 @@ public abstract class InitializeDict {
     TreeMap<String,String> dictionary = new TreeMap<>();
     String dictname;
 
-    public void listFile(File dir){
-        String getname;
-        File[] files = dir.listFiles();
-        for (File file: files) {
-        }
-    }
+    public abstract void listFile(File dir);
+
+    public abstract void dictOrder();
+
+    public abstract void updateDictOrder();
 
     String getfinalpath(String getfile) {
         File file = new File(getfile);
@@ -27,6 +27,8 @@ public abstract class InitializeDict {
         }
         return  out;
     }
+
+
 
 
 }
