@@ -32,6 +32,7 @@ public class Controller extends InitializeDict implements Initializable {
 
     private static TreeMap<String,String> dictionary;
     private static String dictname;
+    public static ArrayList<String> order = new ArrayList<>();
 
 
 
@@ -205,6 +206,7 @@ public class Controller extends InitializeDict implements Initializable {
             public void changed(ObservableValue observableValue, Object o, Object t1) {
                 String name = choicebox.getSelectionModel().getSelectedItem().toString();
                 String abc = "src/sample/listDictionary/" + name;
+                updateDictOrder(name);
                 getDict(abc);
                 updateListView();
                 outputText.clear();
@@ -253,9 +255,8 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
-    public static ArrayList<String> order = new ArrayList<>();
     @Override
-    public void dictOrder(){
+    public String dictOrder(){
         String name;
         try {
             Scanner scanner = new Scanner(new File(getfinalpath("src/sample/dictOrder/listOrder")));
@@ -263,29 +264,27 @@ public class Controller extends InitializeDict implements Initializable {
                 name = scanner.nextLine();
                 order.add(name);
             }
-            for (String x : order){
-                System.out.println(x);
-            }
-
             scanner.close();
         } catch (IOException e){
             e.printStackTrace();
         }
+        return order.get(0);
     }
 
     @Override
-    public void updateDictOrder() {
-
+    public void updateDictOrder(String name) {
+        ArrayList<String> list = order;
+        // oder cho cai name len top of array :(
     }
 
     //initialize
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String filename = "src/sample/listDictionary/textfield";
+        String filename = "src/sample/listDictionary/" + dictOrder();
         String foldername ="src/sample/listDictionary/";
         getDict(filename);
         listFile(new File(getfinalpath(foldername)));
-        dictOrder();
+
     }
 
 }

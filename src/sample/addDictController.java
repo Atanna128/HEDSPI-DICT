@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -82,12 +81,13 @@ public class addDictController extends InitializeDict implements Initializable {
     }
 
     @Override
-    public void dictOrder() {
-
+    public String dictOrder() {
+        String abc = null;
+        return abc;
     }
 
     @Override
-    public void updateDictOrder() {
+    public void updateDictOrder(String name) {
 
     }
 

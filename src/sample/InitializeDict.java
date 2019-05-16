@@ -11,9 +11,10 @@ public abstract class InitializeDict {
 
     public abstract void listFile(File dir);
 
-    public abstract void dictOrder();
+    public abstract String dictOrder();
 
-    public abstract void updateDictOrder();
+    //file name to the top as the lastest opened file
+    public abstract void updateDictOrder(String name);
 
     String getfinalpath(String getfile) {
         File file = new File(getfile);
