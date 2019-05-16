@@ -32,7 +32,7 @@ public class Controller extends InitializeDict implements Initializable {
 
     private static TreeMap<String,String> dictionary;
     private static String dictname;
-    private static ArrayList<String> order;
+
 
 
 
@@ -124,7 +124,6 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     private void updateToFile(String filename) {
-
         // mở file và viết lại vào theo format định sẵn ( dựa trên Treemap / dictname đã đc gán giá trị trong hàm getDict()
         try {
             FileWriter writer = new FileWriter(getfinalpath("src/sample/listDictionary/" + filename));
@@ -199,9 +198,7 @@ public class Controller extends InitializeDict implements Initializable {
     }
 
 
-
-    // still working on it, but have no idea :(
-    // choicebox / choicedialog ?
+    //done
     public void openDictionary(Event event){
         choicebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -256,18 +253,20 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
+    public static ArrayList<String> order = new ArrayList<>();
     @Override
     public void dictOrder(){
         String name;
         try {
             Scanner scanner = new Scanner(new File(getfinalpath("src/sample/dictOrder/listOrder")));
-//            while (scanner.hasNextLine()) {
-//                name = scanner.nextLine();
-//                order.add(name);
-//            }
-//            for (String a : order) {
-//                System.out.println(a);
-//            }
+            while (scanner.hasNextLine()) {
+                name = scanner.nextLine();
+                order.add(name);
+            }
+            for (String x : order){
+                System.out.println(x);
+            }
+
             scanner.close();
         } catch (IOException e){
             e.printStackTrace();
