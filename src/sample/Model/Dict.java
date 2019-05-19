@@ -1,4 +1,4 @@
-package sample;
+package sample.Model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.util.TreeMap;
 import java.lang.String;
 
 
-class Dict {
+ public class Dict {
 
     private String open = "{";
     private String next = ";";
@@ -19,7 +19,7 @@ class Dict {
     // Format of sample dictionary   # name # {word ; meaning}
 
 
-     TreeMap<String,String> read(File filename) throws FileNotFoundException {
+     public TreeMap<String,String> read(File filename) throws FileNotFoundException {
         TreeMap<String,String> map;
         Scanner scanner = new Scanner(filename);
         map = inputdata(scanner);
@@ -27,7 +27,7 @@ class Dict {
         return  map;
     }
 
-     String getdictname(Scanner scanner) {
+     public String getdictname(Scanner scanner) {
         String check;
         String dictname = "";
         String errorstring = "";
@@ -49,7 +49,7 @@ class Dict {
     }
 
 
-     TreeMap<String,String> inputdata(Scanner scanner) {
+      public TreeMap<String,String> inputdata(Scanner scanner) {
         TreeMap<String,String> a = new TreeMap<>();
         String get;
         String word;

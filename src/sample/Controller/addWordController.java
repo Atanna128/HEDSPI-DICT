@@ -1,4 +1,4 @@
-package sample;
+package sample.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.Model.Dict;
 
 import java.io.*;
 import java.net.URL;
@@ -54,7 +55,7 @@ public class addWordController implements Initializable {
 
 
     public void backToMainScene(ActionEvent event) throws IOException {
-        Parent addParent = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent addParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene addScene =new Scene(addParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);

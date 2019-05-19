@@ -4,5 +4,6 @@ module finalform {
     requires kotlin.stdlib;
     requires java.datatransfer;
     requires java.desktop;
+    opens sample.Controller;
     opens sample;
 }

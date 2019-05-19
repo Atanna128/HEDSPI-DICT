@@ -1,4 +1,4 @@
-package sample;
+package sample.Model;
 
 // không dùng làm gì đâu :(
 

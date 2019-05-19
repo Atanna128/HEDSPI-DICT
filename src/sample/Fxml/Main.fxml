@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="600.0" maxWidth="960.0" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane maxHeight="600.0" maxWidth="960.0" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Controller">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -52,8 +52,8 @@
                         <Text layoutX="116.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of dictionary" wrappingWidth="122.13543701171875" />
                      </children>
                   </AnchorPane>
-                  <Button fx:id="add" alignment="CENTER" mnemonicParsing="false" onAction="#addWordScene" prefHeight="39.0" prefWidth="75.0" text="Add" textAlignment="CENTER" />
-                  <Button fx:id="newdict" alignment="CENTER" mnemonicParsing="false" onAction="#addDictScene" prefHeight="39.0" prefWidth="174.0" text="New Dictionary" textOverrun="WORD_ELLIPSIS" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#addWordScene" prefHeight="39.0" prefWidth="75.0" text="Add" textAlignment="CENTER" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#addDictScene" prefHeight="39.0" prefWidth="174.0" text="New Dictionary" textOverrun="WORD_ELLIPSIS" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -77,7 +77,7 @@
             <TextArea fx:id="outputText" editable="false" layoutX="1.0" prefHeight="705.0" prefWidth="924.0" promptText="defination stay here" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <ImageView fx:id="editbutton" fitHeight="32.0" fitWidth="30.0" layoutX="595.0" layoutY="21.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
                <image>
-                  <Image url="@image/edit.png" />
+                  <Image url="@../image/edit.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -85,9 +85,10 @@
             </ImageView>
             <ImageView fx:id="deletebutton" fitHeight="32.0" fitWidth="30.0" layoutX="361.0" layoutY="20.0" onMouseClicked="#delete" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="20.0">
                <image>
-                  <Image url="@image/delete-button.jpg" />
+                  <Image url="@../image/delete-button.jpg" />
                </image>
             </ImageView>
+            <Button layoutX="136.0" layoutY="109.0" mnemonicParsing="false" onAction="#test" text="Button" />
          </children>
       </AnchorPane>
    </center>

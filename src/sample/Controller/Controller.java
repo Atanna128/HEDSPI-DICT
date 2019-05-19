@@ -1,4 +1,4 @@
-package sample;
+package sample.Controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,9 +11,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
+import sample.Model.Dict;
+import sample.InitializeDict;
+
+import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -25,19 +31,19 @@ public class Controller extends InitializeDict implements Initializable {
     public TextArea outputText;
     public ImageView editbutton;
     public ListView dictList;
-    public Button add;
     public ImageView deletebutton;
-    public Button newdict;
     public ChoiceBox choicebox;
 
     private static TreeMap<String,String> dictionary;
     private static String dictname;
     public static ArrayList<String> order = new ArrayList<>();
 
-
-
-
-
+    Controller(){
+        Controller controller = new Controller();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setController(controller);
+        Panel panel = (Panel) loader.load("sample/Fxml/Main.fxml");
+    }
 
 
     // Trong controller này có 2 kiểu đối tượng TreeMap và ListView. Treemap là nơi danh sách các từ được load vào, đồng
@@ -80,6 +86,17 @@ public class Controller extends InitializeDict implements Initializable {
         window.show();
     }
 
+    public void test(ActionEvent event) throws IOException {
+        Parent addParent = FXMLLoader.load(getClass().getResource("test.fxml"));
+        Scene addScene =new Scene(addParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(addScene);
+        window.setWidth(960);
+        window.setHeight(600);
+        window.show();
+
+
+    }
 
     //done
     // set editable for the word's meaning

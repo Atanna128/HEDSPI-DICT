@@ -1,4 +1,4 @@
-package sample;
+package sample.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.InitializeDict;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -62,7 +63,7 @@ public class addDictController extends InitializeDict implements Initializable {
     }
 
     public void backToMainScene(ActionEvent event) throws IOException {
-        Parent addParent = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent addParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene addScene =new Scene(addParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);
