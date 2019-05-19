@@ -82,17 +82,6 @@ public class addDictController extends InitializeDict implements Initializable {
     }
 
     @Override
-    public String dictOrder() {
-        String abc = null;
-        return abc;
-    }
-
-    @Override
-    public void updateDictOrder(String name) {
-
-    }
-
-    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listFile(new File(getfinalpath("src/sample/listDictionary/")));
     }

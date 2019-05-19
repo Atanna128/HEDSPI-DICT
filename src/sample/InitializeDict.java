@@ -11,11 +11,6 @@ public abstract class InitializeDict {
 
     public abstract void listFile(File dir);
 
-    public abstract String dictOrder();
-
-    //file name to the top as the lastest opened file
-    public abstract void updateDictOrder(String name);
-
     public String getfinalpath(String getfile) {
         File file = new File(getfile);
         String pathname = file.getAbsolutePath();

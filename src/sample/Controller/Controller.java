@@ -29,9 +29,9 @@ public class Controller extends InitializeDict implements Initializable {
     public TextField inputText;
     public TextArea outputText;
     public ImageView editbutton;
-    public ListView dictList;
+    public ListView<String> dictList;
     public ImageView deletebutton;
-    public ChoiceBox choicebox;
+    public ChoiceBox<String> choicebox;
 
     private static TreeMap<String,String> dictionary;
     private static String dictname;
@@ -51,7 +51,7 @@ public class Controller extends InitializeDict implements Initializable {
     }
 
     public void showStage(){
-        thisStage.showAndWait();
+        thisStage.show();
     }
 
     public String getDictname(){
@@ -68,8 +68,6 @@ public class Controller extends InitializeDict implements Initializable {
     // từ điển ( TreeMap) vì vậy phải load toàn bộ dữ liệu của từ điển ( Trong file thuộc folder listDictionary) vào
     // 2 kiểu đối tượng TreeMap / String dictname
 
-    // lỗi đọc file : dùng scanner nên các String đều xuất hiện ký tự " "  ở đầu =)))  | fix phải fix cả proj nên
-    // lười vứt đấy nhé, chưa có ý định sửa đâu
 
     //WORKING :
     // open new dictionary from primaryStage
@@ -124,9 +122,13 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     public void delete(MouseEvent event){
-        String word;
-        word = " " + inputText.getText();
-        dictionary.remove(word);
+        String word = inputText.getText();
+        String name = choicebox.getSelectionModel().getSelectedItem();
+        if (dictionary.containsKey(name)){
+            dictionary.remove(name);
+        }else dictionary.remove(word);
+
+
         outputText.clear();
         inputText.clear();
         updateListView();
@@ -147,7 +149,7 @@ public class Controller extends InitializeDict implements Initializable {
     private void editMeaning(){
         String word;
         String meaning;
-        word = " " + inputText.getText();
+        word =  inputText.getText();
         meaning = outputText.getText();
         if (dictionary.containsKey(word)){ // if trong trường hợp click edit khi chưa search xong 1 từ nào
             dictionary.replace(word,meaning); // update từ
@@ -178,7 +180,7 @@ public class Controller extends InitializeDict implements Initializable {
     public void searching(Event event){
         String input = inputText.getText();
         String meaning;
-        input = " " + input;
+
         meaning = getMeaning(input);
 
         if (! (meaning == null)) {
@@ -205,7 +207,6 @@ public class Controller extends InitializeDict implements Initializable {
         dictList.getItems().clear();
         for (Map.Entry<String,String> entry: dictionary.entrySet()) {
             String key = entry.getKey();
-            String value = entry.getValue();
             if (key.matches(recentword)) {
                 dictList.getItems().add(key);
             }
@@ -216,7 +217,7 @@ public class Controller extends InitializeDict implements Initializable {
         dictList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                String word = dictList.getSelectionModel().getSelectedItem().toString();
+                String word = dictList.getSelectionModel().getSelectedItem();
                 String meaning = getMeaning(word);
                 outputText.setEditable(true);
                 outputText.setText(meaning);
@@ -229,9 +230,8 @@ public class Controller extends InitializeDict implements Initializable {
         choicebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observableValue, Object o, Object t1) {
-                String name = choicebox.getSelectionModel().getSelectedItem().toString();
+                String name = choicebox.getSelectionModel().getSelectedItem();
                 String abc = "src/sample/listDictionary/" + name;
-                updateDictOrder(name);
                 getDict(abc);
                 updateListView();
                 outputText.clear();
@@ -248,16 +248,15 @@ public class Controller extends InitializeDict implements Initializable {
         String getname;
         int i = 0;
         int index = i;
-        File[] files = dir.listFiles();// đưa ra toàn bộ danh sách các file có trong folder
+        File[] files = dir.listFiles();// đưa ra toàn bộ danh sách các từ điển có trong folder
         for (File file: files) {
             getname = file.getName();
             choicebox.getItems().add(getname);
-            if (dictname.equals(" " + getname)){
+            if (dictname.equals(getname)){
                 index = i;
             }
             i++;
         }
-        choicebox.setPrefSize(200,25);
         choicebox.getSelectionModel().select(index);
     }
 
@@ -270,7 +269,7 @@ public class Controller extends InitializeDict implements Initializable {
             dictname = dict.getdictname(scanner);
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
                 String key   = entry.getKey();
-                String value = entry.getValue();
+//                String value = entry.getValue();
                 dictList.getItems().add(key);
             }
         }catch (FileNotFoundException e){
@@ -279,32 +278,10 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
-    @Override //delete soon
-    public String dictOrder(){
-        String name;
-        try {
-            Scanner scanner = new Scanner(new File(getfinalpath("src/sample/dictOrder/listOrder")));
-            while (scanner.hasNextLine()) {
-                name = scanner.nextLine();
-                order.add(name);
-            }
-            scanner.close();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-        return order.get(0);
-    }
-
-    @Override //delete soon
-    public void updateDictOrder(String name) {
-        ArrayList<String> list = order;
-        // oder cho cai name len top of array :(
-    }
-
     //initialize
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String filename = "src/sample/listDictionary/" + dictOrder();
+        String filename = "src/sample/listDictionary/textfield";
         String foldername ="src/sample/listDictionary/";
         getDict(filename);
         listFile(new File(getfinalpath(foldername)));

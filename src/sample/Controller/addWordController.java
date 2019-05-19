@@ -55,7 +55,8 @@ public class addWordController implements Initializable {
 
     private void updateToFile() {
         try {
-            FileWriter writer = new FileWriter(controller.getfinalpath("src/sample/listDictionary/textfield"));
+            String filename = controller.getDictname();
+            FileWriter writer = new FileWriter(controller.getfinalpath("src/sample/listDictionary/" + filename));
             BufferedWriter buffer = new BufferedWriter(writer);
             buffer.write(" # " + dictname + " # "); // follow the format
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {

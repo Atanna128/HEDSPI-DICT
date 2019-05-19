@@ -30,16 +30,22 @@ import java.lang.String;
      public String getdictname(Scanner scanner) {
         String check;
         String dictname = "";
+        int i = 0;
 
         while (scanner.hasNext()) {
             check = scanner.next();
             if (check.equals("#")) {
                 while (!(check = scanner.next()).equals("#")) {
-                    dictname = dictname + " " + check;
+                    if (i == 0 ) {
+                        dictname = dictname  + check;
+                    }
+                    else dictname = dictname + " " + check;
+                    i=1;
                 } // lấy dict-name trong # #
                 break;
             }
         }
+//        this.dictname = dictname;
         return dictname;
     }
 
@@ -49,6 +55,8 @@ import java.lang.String;
         String get;
         String name;
         String meaning;
+        int i = 0;
+        int j = 0;
         Word word = new Word();
         try {
             while (scanner.hasNext()) {
@@ -58,17 +66,28 @@ import java.lang.String;
                 while (!(scanner.next().equals(open))) {
                 }
                 while (!((get = scanner.next()).equals(next))) {
-                    name = name + " " + get;
+                    if (i == 0){
+                        name = name + get;
+                    }
+                    else name = name + " " + get;
+                    i = 1;
                 }
+
                 while (!((get = scanner.next()).equals(end))) {
-                    meaning = meaning + " " + get;
+                    if (j == 0){
+                        meaning = meaning + get;
+                    }
+                    else meaning = meaning + " " + get;
+                    j = 1;
                 }
+                i=0;
+                j=0;
                 word.setName(name);
                 word.setMeaning(meaning);
                 a.put(word.getName(),word.getMeaning());
             }
         } catch (NoSuchElementException e) {
-            System.out.println("Unnecessary text found at the end of file");
+            System.out.println("No word found!");
         } catch (Exception e) {
             e.printStackTrace();
         }
