@@ -25,7 +25,24 @@ public class addWordController implements Initializable {
 
     private TreeMap<String,String> dictionary;
     private String dictname;
-    private Controller controller = new Controller();
+    private Stage thisStage;
+    private final Controller controller;
+
+    public addWordController(Controller controller) {
+        this.controller = controller;
+        thisStage = new Stage();
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/Fxml/addWord.fxml"));
+            loader.setController(this);
+            thisStage.setScene(new Scene(loader.load()));
+            thisStage.setTitle("Dictionary Application");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void showStage() {
+        thisStage.showAndWait();
+    }
 
     public void AddtoMainScene(ActionEvent event) throws IOException {
         String wordadd = wordAdd.getText();
@@ -55,7 +72,7 @@ public class addWordController implements Initializable {
 
 
     public void backToMainScene(ActionEvent event) throws IOException {
-        Parent addParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Parent addParent = FXMLLoader.load(getClass().getResource("../Fxml/Main.fxml"));
         Scene addScene =new Scene(addParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);

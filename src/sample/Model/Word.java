@@ -3,23 +3,23 @@ package sample.Model;
 // không dùng làm gì đâu :(
 
 public class Word {
-    private String word;
+    private String name;
     private String meaning;
 
     public Word(){
     }
 
-    public Word(String word, String meaning){
-        this.word = word;
+    public Word(String name, String meaning){
+        this.name = name;
         this.meaning = meaning;
     }
 
-    public String getWord(){
-        return word;
+    public String getName(){
+        return name;
     }
 
-    public void setWord(String word){
-        this.word = word;
+    public void setName(String word){
+        this.name = word;
     }
 
     public String getMeaning(){
@@ -30,8 +30,13 @@ public class Word {
         this.meaning = meaning;
     }
 
+    public void reset(){
+        this.name = "";
+        this.meaning = "";
+    }
+
     @Override
     public String toString(){
-        return this.word;
+        return this.name;
     }
 }

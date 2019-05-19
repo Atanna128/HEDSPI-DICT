@@ -30,7 +30,7 @@ import java.lang.String;
      public String getdictname(Scanner scanner) {
         String check;
         String dictname = "";
-        String errorstring = "";
+
         while (scanner.hasNext()) {
             check = scanner.next();
             if (check.equals("#")) {
@@ -38,12 +38,7 @@ import java.lang.String;
                     dictname = dictname + " " + check;
                 } // lấy dict-name trong # #
                 break;
-            } else {
-                errorstring = errorstring + " " + check;
             }
-        }
-        if (!errorstring.equals("")) {
-            System.out.println("Dictionary should start with # dict-name #" + "\nMisformatted string : " + errorstring);
         }
         return dictname;
     }
@@ -52,21 +47,25 @@ import java.lang.String;
       public TreeMap<String,String> inputdata(Scanner scanner) {
         TreeMap<String,String> a = new TreeMap<>();
         String get;
-        String word;
+        String name;
         String meaning;
+        Word word = new Word();
         try {
             while (scanner.hasNext()) {
-                word = "";
+                word.reset();
+                name = "";
                 meaning = "";
                 while (!(scanner.next().equals(open))) {
                 }
                 while (!((get = scanner.next()).equals(next))) {
-                    word = word + " " + get;
+                    name = name + " " + get;
                 }
                 while (!((get = scanner.next()).equals(end))) {
                     meaning = meaning + " " + get;
                 }
-                a.put(word,meaning);
+                word.setName(name);
+                word.setMeaning(meaning);
+                a.put(word.getName(),word.getMeaning());
             }
         } catch (NoSuchElementException e) {
             System.out.println("Unnecessary text found at the end of file");

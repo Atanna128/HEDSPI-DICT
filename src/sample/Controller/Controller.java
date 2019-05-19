@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 import sample.Model.Dict;
 import sample.InitializeDict;
 
-import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -37,12 +36,26 @@ public class Controller extends InitializeDict implements Initializable {
     private static TreeMap<String,String> dictionary;
     private static String dictname;
     public static ArrayList<String> order = new ArrayList<>();
+    private final Stage thisStage;
 
-    Controller(){
-        Controller controller = new Controller();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setController(controller);
-        Panel panel = (Panel) loader.load("sample/Fxml/Main.fxml");
+    public Controller(){
+        thisStage = new Stage();
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/Fxml/Main.fxml"));
+            loader.setController(this);
+            thisStage.setScene(new Scene(loader.load()));
+            thisStage.setTitle("Dictionary Application");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showStage(){
+        thisStage.showAndWait();
+    }
+
+    public String getDictname(){
+        return dictname;
     }
 
 
@@ -162,7 +175,6 @@ public class Controller extends InitializeDict implements Initializable {
 
     }
 
-    //done // find the meaning and show it on right textarea
     public void searching(Event event){
         String input = inputText.getText();
         String meaning;
@@ -179,8 +191,6 @@ public class Controller extends InitializeDict implements Initializable {
         autocomplete(input);
     }
 
-
-    //done
     private String getMeaning(String word){
         String notfound = null;
         Set<String> keys = dictionary.keySet();
@@ -190,7 +200,6 @@ public class Controller extends InitializeDict implements Initializable {
         return notfound;
     }
 
-    //done
     private void autocomplete(String word) {
         String recentword =  word + "(.*)";
         dictList.getItems().clear();
@@ -203,7 +212,6 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
-    //done
     public void getListItem(Event event){
         dictList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -217,8 +225,6 @@ public class Controller extends InitializeDict implements Initializable {
         });
     }
 
-
-    //done
     public void openDictionary(Event event){
         choicebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -255,7 +261,6 @@ public class Controller extends InitializeDict implements Initializable {
         choicebox.getSelectionModel().select(index);
     }
 
-
     //initialize
     private void getDict(String filename){
         try {
@@ -274,7 +279,7 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
-    @Override
+    @Override //delete soon
     public String dictOrder(){
         String name;
         try {
@@ -290,7 +295,7 @@ public class Controller extends InitializeDict implements Initializable {
         return order.get(0);
     }
 
-    @Override
+    @Override //delete soon
     public void updateDictOrder(String name) {
         ArrayList<String> list = order;
         // oder cho cai name len top of array :(

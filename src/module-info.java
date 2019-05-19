@@ -1,7 +1,7 @@
 module finalform {
     requires javafx.fxml;
     requires javafx.controls;
-    requires kotlin.stdlib;
+    requires javafx.base;
     requires java.datatransfer;
     requires java.desktop;
     opens sample.Controller;
