@@ -11,8 +11,13 @@ import sample.Controller.Controller;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Controller controller = new Controller();
-        controller.showStage();
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/Fxml/Main.fxml"));
+        Scene scene = new Scene(root, 960, 600);
+        scene.getStylesheets().add(getClass().getResource("/sample/Css/app.css").toExternalForm());
+        primaryStage.setTitle("Dictionary");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
     }
 
 

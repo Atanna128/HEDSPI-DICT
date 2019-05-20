@@ -33,26 +33,15 @@ public class Controller extends InitializeDict implements Initializable {
     public ImageView deletebutton;
     public ChoiceBox<String> choicebox;
 
+    public TextField wordAdd;
+    public TextArea meaningAdd;
+
+    public Scene addScene;
     private static TreeMap<String,String> dictionary;
     private static String dictname;
     public static ArrayList<String> order = new ArrayList<>();
-    private final Stage thisStage;
 
-    public Controller(){
-        thisStage = new Stage();
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/Fxml/Main.fxml"));
-            loader.setController(this);
-            thisStage.setScene(new Scene(loader.load()));
-            thisStage.setTitle("Dictionary Application");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
-    public void showStage(){
-        thisStage.show();
-    }
 
     public String getDictname(){
         return dictname;
@@ -75,9 +64,11 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     public void addWordScene(ActionEvent event) throws IOException {
-        //  copy từ main
-        Parent addParent = FXMLLoader.load(getClass().getResource("addWord.fxml"));
-        Scene addScene =new Scene(addParent);
+//          copy từ main
+        Parent addParent = FXMLLoader.load(getClass().getResource("sample/Fxml/addWord.fxml"));
+
+
+        addScene =new Scene(addParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);
         window.setWidth(960);
@@ -97,16 +88,20 @@ public class Controller extends InitializeDict implements Initializable {
         window.show();
     }
 
-    public void test(ActionEvent event) throws IOException {
-        Parent addParent = FXMLLoader.load(getClass().getResource("test.fxml"));
+    public void backToMainScene(ActionEvent event) throws IOException {
+        Parent addParent = FXMLLoader.load(getClass().getResource("../Fxml/Main.fxml"));
         Scene addScene =new Scene(addParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);
-        window.setWidth(960);
-        window.setHeight(600);
         window.show();
+    }
 
-
+    public void AddtoMainScene(ActionEvent event) throws IOException {
+        String wordadd = wordAdd.getText();
+        String meaningadd = meaningAdd.getText();
+        dictionary.put(wordadd,meaningadd);
+        updateToFile(dictname);
+        backToMainScene(event);
     }
 
     //done
@@ -122,12 +117,22 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     public void delete(MouseEvent event){
-        String word = inputText.getText();
-        String name = choicebox.getSelectionModel().getSelectedItem();
-        if (dictionary.containsKey(name)){
-            dictionary.remove(name);
-        }else dictionary.remove(word);
-
+        try {
+            String word = inputText.getText();
+            String name = dictList.getSelectionModel().getSelectedItem();
+            System.out.println("|"+ word + "|");
+            if (dictionary.containsKey(name)){
+                dictionary.remove(name);
+                System.out.println("remove " + name);
+            }else if (dictionary.containsKey(word)){
+                System.out.println("remove " + word);
+                dictionary.remove(word);
+            }else if (!dictionary.containsKey(word)){
+                System.out.println("not contain");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         outputText.clear();
         inputText.clear();
@@ -269,6 +274,7 @@ public class Controller extends InitializeDict implements Initializable {
             dictname = dict.getdictname(scanner);
             for (Map.Entry<String,String> entry: dictionary.entrySet()) {
                 String key   = entry.getKey();
+//                System.out.println(key);
 //                String value = entry.getValue();
                 dictList.getItems().add(key);
             }
