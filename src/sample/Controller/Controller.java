@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
@@ -17,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
 import sample.Model.Dict;
-import sample.InitializeDict;
+import sample.Model.InitializeDict;
 
 import java.io.*;
 import java.net.URL;
@@ -52,10 +51,6 @@ public class Controller extends InitializeDict implements Initializable {
     // từ điển ( TreeMap) vì vậy phải load toàn bộ dữ liệu của từ điển ( Trong file thuộc folder listDictionary) vào
     // 2 kiểu đối tượng TreeMap / String dictname
 
-
-    //WORKING :
-    // open new dictionary from primaryStage
-    // fix resizable primaryStage
 
     //done
     public void addWordScene(ActionEvent event) throws IOException {
@@ -108,15 +103,10 @@ public class Controller extends InitializeDict implements Initializable {
         try {
             String word = inputText.getText();
             String name = dictList.getSelectionModel().getSelectedItem();
-            System.out.println("|"+ word + "|");
             if (dictionary.containsKey(name)){
                 dictionary.remove(name);
-                System.out.println("remove " + name);
             }else if (dictionary.containsKey(word)){
-                System.out.println("remove " + word);
                 dictionary.remove(word);
-            }else if (!dictionary.containsKey(word)){
-                System.out.println("not contain");
             }
         }catch (Exception e){
             e.printStackTrace();
