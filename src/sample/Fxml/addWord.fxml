@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Controller">
+            xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <Label layoutX="361.0" layoutY="84.0" text="Add a new word">
          <font>

@@ -43,11 +43,6 @@ public class Controller extends InitializeDict implements Initializable {
 
 
 
-    public String getDictname(){
-        return dictname;
-    }
-
-
     // Trong controller này có 2 kiểu đối tượng TreeMap và ListView. Treemap là nơi danh sách các từ được load vào, đồng
     // thời được add vào ListView để hiển thị.
     // Trên lý thuyết, để tối ưu thì ta phải coi TreeMap như 1 ObservableList và truyền cho ListView. Khi đó, nếu có
@@ -64,36 +59,29 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     public void addWordScene(ActionEvent event) throws IOException {
-//          copy từ main
-        Parent addParent = FXMLLoader.load(getClass().getResource("sample/Fxml/addWord.fxml"));
-
-
-        addScene =new Scene(addParent);
+        FXMLLoader addParent = new  FXMLLoader(getClass().getResource("sample/Fxml/addWord.fxml"));
+        addScene =new Scene(addParent.load());
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);
-        window.setWidth(960);
-        window.setHeight(600);
         window.show();
     }
 
     //done
     public void addDictScene(ActionEvent event) throws IOException {
-        // copy từ main
-        Parent addParent = FXMLLoader.load(getClass().getResource("addDict.fxml"));
-        Scene addScene =new Scene(addParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(addScene);
-        window.setWidth(960);
-        window.setHeight(600);
-        window.show();
+//        // copy từ main
+//        Parent addParent = FXMLLoader.load(getClass().getResource("addDict.fxml"));
+//        Scene addScene =new Scene(addParent);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(addScene);
+//        window.show();
     }
 
     public void backToMainScene(ActionEvent event) throws IOException {
-        Parent addParent = FXMLLoader.load(getClass().getResource("../Fxml/Main.fxml"));
-        Scene addScene =new Scene(addParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(addScene);
-        window.show();
+//        Parent addParent = FXMLLoader.load(getClass().getResource("../Fxml/Main.fxml"));
+//        Scene addScene =new Scene(addParent);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(addScene);
+//        window.show();
     }
 
     public void AddtoMainScene(ActionEvent event) throws IOException {
@@ -238,6 +226,8 @@ public class Controller extends InitializeDict implements Initializable {
                 String name = choicebox.getSelectionModel().getSelectedItem();
                 String abc = "src/sample/listDictionary/" + name;
                 getDict(abc);
+                dictname = name;
+                updateRecentOpen(dictname);
                 updateListView();
                 outputText.clear();
                 inputText.clear();
@@ -284,12 +274,34 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
+    public String getRecentOpen(){
+        String defaultfile = "textfield";
+        String name = defaultfile;
+        try{
+            Scanner scanner = new Scanner(new File(getfinalpath("src/sample/recentOpen")));
+            name = scanner.nextLine();
+        }catch (FileNotFoundException e){
+            System.out.println("File recentOpen not found");
+        }
+        return name;
+    }
+
+    private void updateRecentOpen(String name){
+        try {
+            FileWriter writer = new FileWriter(getfinalpath("src/sample/recentOpen"));
+            BufferedWriter buffer = new BufferedWriter(writer);
+            buffer.write(name);
+            buffer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     //initialize
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String filename = "src/sample/listDictionary/textfield";
         String foldername ="src/sample/listDictionary/";
-        getDict(filename);
+        getDict("src/sample/listDictionary" + getRecentOpen());
         listFile(new File(getfinalpath(foldername)));
 
     }
