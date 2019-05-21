@@ -19,7 +19,7 @@ You can run the code by opening file `Main.java`
 - Kotlin
 - JDK version 11.01 or more
 - Javafx library
-- Javafx Scene Builder ( in case you want to modify the application)
+- Javafx Scene Builder ( in case you want to modify the UI)
 
 ### Clone
 
