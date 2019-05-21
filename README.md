@@ -6,7 +6,7 @@ ___
 
 ## Deployment
 
-You can run the code by opening file `dictionary.exe`
+You can run the code by opening file `Main.java`
 
 ---
 
@@ -46,4 +46,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
----
+--- 
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
