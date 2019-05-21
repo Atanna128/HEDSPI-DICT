@@ -63,7 +63,7 @@ public class addDictController extends InitializeDict implements Initializable {
     }
 
     public void backToMainScene(ActionEvent event) throws IOException {
-        Parent addParent = FXMLLoader.load(getClass().getResource("../Fxml/Main.fxml"));
+        Parent addParent = FXMLLoader.load(getClass().getResource("/sample/Fxml/Main.fxml"));
         Scene addScene =new Scene(addParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);

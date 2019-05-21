@@ -36,7 +36,7 @@ public class Controller extends InitializeDict implements Initializable {
     public TextField wordAdd;
     public TextArea meaningAdd;
 
-    public Scene addScene;
+    private Scene addScene;
     private static TreeMap<String,String> dictionary;
     private static String dictname;
     public static ArrayList<String> order = new ArrayList<>();
@@ -59,7 +59,7 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     public void addWordScene(ActionEvent event) throws IOException {
-        FXMLLoader addParent = new  FXMLLoader(getClass().getResource("sample/Fxml/addWord.fxml"));
+        FXMLLoader addParent = new FXMLLoader(getClass().getResource("/sample/Fxml/addWord.fxml"));
         addParent.setController(this);
         addScene =new Scene(addParent.load());
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -69,20 +69,19 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     public void addDictScene(ActionEvent event) throws IOException {
-//        // copy từ main
-//        Parent addParent = FXMLLoader.load(getClass().getResource("addDict.fxml"));
-//        Scene addScene =new Scene(addParent);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        window.setScene(addScene);
-//        window.show();
+        FXMLLoader addParent = new FXMLLoader(getClass().getResource("/sample/Fxml/addDict.fxml"));
+        addScene =new Scene(addParent.load());
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(addScene);
+        window.show();
     }
 
     public void backToMainScene(ActionEvent event) throws IOException {
-//        Parent addParent = FXMLLoader.load(getClass().getResource("../Fxml/Main.fxml"));
-//        Scene addScene =new Scene(addParent);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        window.setScene(addScene);
-//        window.show();
+        FXMLLoader addParent = new FXMLLoader(getClass().getResource("/sample/Fxml/Main.fxml"));
+        addScene =new Scene(addParent.load());
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(addScene);
+        window.show();
     }
 
     public void AddtoMainScene(ActionEvent event) throws IOException {
@@ -130,7 +129,6 @@ public class Controller extends InitializeDict implements Initializable {
 
     }
 
-    //done
     private void updateListView() {
         dictList.getItems().clear(); // xóa ListView + add lại sau khi đã chỉnh sửa treemap
         for (Map.Entry<String,String> entry: dictionary.entrySet()) {
@@ -139,19 +137,20 @@ public class Controller extends InitializeDict implements Initializable {
         }
     }
 
-    //done
     private void editMeaning(){
-        String word;
+        String word,name;
         String meaning;
         word =  inputText.getText();
         meaning = outputText.getText();
-        if (dictionary.containsKey(word)){ // if trong trường hợp click edit khi chưa search xong 1 từ nào
+        name = dictList.getSelectionModel().getSelectedItem();
+        if (dictionary.containsKey(name)){
+            dictionary.replace(name,meaning);
+        }else if (dictionary.containsKey(word)){ // if trong trường hợp click edit khi chưa search xong 1 từ nào
             dictionary.replace(word,meaning); // update từ
         }
         updateToFile(dictname);
     }
 
-    //done
     private void updateToFile(String filename) {
         // mở file và viết lại vào theo format định sẵn ( dựa trên Treemap / dictname đã đc gán giá trị trong hàm getDict()
         try {
