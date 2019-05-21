@@ -60,6 +60,7 @@ public class Controller extends InitializeDict implements Initializable {
     //done
     public void addWordScene(ActionEvent event) throws IOException {
         FXMLLoader addParent = new  FXMLLoader(getClass().getResource("sample/Fxml/addWord.fxml"));
+        addParent.setController(this);
         addScene =new Scene(addParent.load());
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);
@@ -301,7 +302,7 @@ public class Controller extends InitializeDict implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String foldername ="src/sample/listDictionary/";
-        getDict("src/sample/listDictionary" + getRecentOpen());
+        getDict("src/sample/listDictionary/" + getRecentOpen());
         listFile(new File(getfinalpath(foldername)));
 
     }
