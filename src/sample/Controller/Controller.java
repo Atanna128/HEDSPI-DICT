@@ -54,7 +54,7 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     public void addWordScene(ActionEvent event) throws IOException {
-        FXMLLoader addParent = new FXMLLoader(getClass().getResource("/sample/Fxml/addWord.fxml"));
+        FXMLLoader addParent = new FXMLLoader(getClass().getResource("/sample/View/addWord.fxml"));
         addParent.setController(this);
         addScene =new Scene(addParent.load());
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -64,7 +64,7 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     public void addDictScene(ActionEvent event) throws IOException {
-        FXMLLoader addParent = new FXMLLoader(getClass().getResource("/sample/Fxml/addDict.fxml"));
+        FXMLLoader addParent = new FXMLLoader(getClass().getResource("/sample/View/addDict.fxml"));
         addScene =new Scene(addParent.load());
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);
@@ -72,7 +72,7 @@ public class Controller extends InitializeDict implements Initializable {
     }
 
     public void backToMainScene(ActionEvent event) throws IOException {
-        FXMLLoader addParent = new FXMLLoader(getClass().getResource("/sample/Fxml/Main.fxml"));
+        FXMLLoader addParent = new FXMLLoader(getClass().getResource("/sample/View/Main.fxml"));
         addScene =new Scene(addParent.load());
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(addScene);
@@ -100,22 +100,31 @@ public class Controller extends InitializeDict implements Initializable {
 
     //done
     public void delete(MouseEvent event){
+        int i = 0;
+        String word = inputText.getText();
+        String name = dictList.getSelectionModel().getSelectedItem();
         try {
-            String word = inputText.getText();
-            String name = dictList.getSelectionModel().getSelectedItem();
+
             if (dictionary.containsKey(name)){
                 dictionary.remove(name);
-            }else if (dictionary.containsKey(word)){
+                i =1;
+            }
+//            else if (dictionary.containsKey(word)){
+//                dictionary.remove(word);
+//            }
+        }catch (Exception e){
+        }
+        finally {
+            if ( i == 0 && dictionary.containsKey(word)){
                 dictionary.remove(word);
             }
-        }catch (Exception e){
-            e.printStackTrace();
+            outputText.clear();
+            inputText.clear();
+            updateListView();
+            updateToFile(dictname);
         }
 
-        outputText.clear();
-        inputText.clear();
-        updateListView();
-        updateToFile(dictname);
+
 
     }
 
