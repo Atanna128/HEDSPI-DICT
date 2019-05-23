@@ -73,7 +73,11 @@ import java.lang.String;
                     i = 1;
                 }
 
+
                 while (!((get = scanner.next()).equals(end))) {
+                    if(get.equals("+")||get.equals("--")||get.equals("*")) {
+                        meaning = meaning +  "\n";
+                    }
                     if (j == 0){
                         meaning = meaning + get;
                     }
