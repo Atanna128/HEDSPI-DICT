@@ -84,6 +84,7 @@ public class addDictController extends InitializeDict implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listFile(new File(getfinalpath("src/sample/listDictionary/")));
+        choiceBox.setVisible(false);
     }
 }
 
